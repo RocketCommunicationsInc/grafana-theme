@@ -22,7 +22,9 @@
     "node": ">=14"
   },
   "dependencies": {
+    "@astrouxds/mui-theme": "^0.0.1",
     "@astrouxds/tokens": "^1.0.2",
+    "@emotion/react": "^11.10.4",
     "react-style-tag": "^3.0.1"
   }
 }

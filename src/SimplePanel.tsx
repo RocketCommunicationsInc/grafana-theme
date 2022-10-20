@@ -1,49 +1,51 @@
-import React, { useState, useEffect } from 'react';
+/** @jsx jsx */
+import { useState, useEffect, useMemo } from 'react';
+import type { SimpleOptions } from 'types';
 import { PanelProps } from '@grafana/data';
-import { SimpleOptions } from 'types';
-import { css, cx } from 'emotion';
-import { stylesFactory } from '@grafana/ui';
+import { jsx, Global } from '@emotion/react';
+import { astroTokens, Mode } from '@astrouxds/mui-theme';
 import { Style } from 'react-style-tag';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
-export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
-  const styles = getStyles();
-  // let color: string;
-  // switch (options.color) {
-  //   case 'green':
-  //     color = theme.palette.greenBase;
-  //     break;
-  //   case 'blue':
-  //     color = theme.palette.blue95;
-  //     break;
-  // }
+export const SimplePanel = ({ options, data, width, height }: Props) => {
+  const [astroTheme, setAstroTheme] = useState<Mode>('dark');
+  const astro = useMemo(() => astroTokens(astroTheme), [astroTheme]);
 
-  const [astroTheme, setAstroTheme] = useState('dark');
   useEffect(() => {
-    appenedLightClass();
-  });
+    const body = document.body;
 
-  function appenedLightClass() {
-    const body = document.querySelector('body');
     if (astroTheme === 'light') {
-      body?.classList.add('light-theme');
-    } else {
-      body?.classList.remove('light-theme');
+      body.classList.add('light-theme');
+      return;
     }
-  }
+
+    if (astroTheme === 'dark') {
+      body.classList.remove('light-theme');
+      return;
+    }
+  }, [astroTheme]);
 
   return (
     <div
-      className={cx(
-        styles.wrapper,
-        css`
-          width: ${width}px;
-          height: ${height}px;
-        `
-      )}
+      css={{
+        position: 'relative',
+        textAlign: 'center',
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
     >
       <h3>Astro Theme Selection</h3>
+      <div
+        css={{
+          backgroundColor: astro.color.background.base.default,
+          '&:hover': {
+            backgroundColor: astro.color.background.base.hover,
+          },
+        }}
+      >
+        This has a astro base default background and base hover when hovered.
+      </div>
       <div className="astro-btn-container">
         <div className="astro-btn" onClick={() => setAstroTheme('dark')} style={{ width: '80px', height: '36px' }}>
           Dark
@@ -52,6 +54,21 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           Light
         </div>
       </div>
+
+      <Global
+        styles={{
+          header: {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          'panel-container': {
+            backgroundColor: astro.color.background.surface.default,
+          },
+          'astro-btn': {
+            padding: astro.spacing(2, 4),
+          },
+        }}
+      />
 
       <Style>
         {`
@@ -203,12 +220,3 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     </div>
   );
 };
-
-const getStyles = stylesFactory(() => {
-  return {
-    wrapper: css`
-      position: relative;
-      text-align: center;
-    `,
-  };
-});
