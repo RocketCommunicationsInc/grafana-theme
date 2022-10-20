@@ -1,9 +1,7 @@
-type SeriesSize = 'sm' | 'md' | 'lg';
-type CircleColor = 'blue' | 'green';
+type DefaultTheme = 'dark' | 'light';
 
 export interface SimpleOptions {
-  text: string;
-  showSeriesCount: boolean;
-  seriesCountSize: SeriesSize;
-  color: CircleColor;
+  defaultTheme: DefaultTheme;
+  customCSS: string;
+  hideTheme: boolean;
 }

@@ -1,3 +1,5 @@
+> This is a work in progress and not yet ready for use.
+
 # Grafana Panel Plugin Template
 
 [![Build](https://github.com/grafana/grafana-starter-panel/workflows/CI/badge.svg)](https://github.com/grafana/grafana-starter-panel/actions?query=workflow%3A%22CI%22)

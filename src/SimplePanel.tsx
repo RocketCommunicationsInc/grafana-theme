@@ -9,27 +9,20 @@ interface Props extends PanelProps<SimpleOptions> {}
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
   const styles = getStyles();
-  // let color: string;
-  // switch (options.color) {
-  //   case 'green':
-  //     color = theme.palette.greenBase;
-  //     break;
-  //   case 'blue':
-  //     color = theme.palette.blue95;
-  //     break;
-  // }
 
-  const [astroTheme, setAstroTheme] = useState('dark');
+  const [astroTheme, setAstroTheme] = useState(`${options.defaultTheme}`);
   useEffect(() => {
-    appenedLightClass();
-  });
+    appendLightClass(astroTheme);
+  }, [astroTheme]);
 
-  function appenedLightClass() {
+  function appendLightClass(theme?: string) {
     const body = document.querySelector('body');
-    if (astroTheme === 'light') {
+    if (theme === 'light') {
       body?.classList.add('light-theme');
+      setAstroTheme('light');
     } else {
       body?.classList.remove('light-theme');
+      setAstroTheme('dark');
     }
   }
 
@@ -43,21 +36,25 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
         `
       )}
     >
-      <h3>Astro Theme Selection</h3>
-      <div className="astro-btn-container">
-        <div className="astro-btn" onClick={() => setAstroTheme('dark')} style={{ width: '80px', height: '36px' }}>
-          Dark
+      {options.hideTheme === true ? null : (
+        <div>
+          <h3>Astro Theme Selection</h3>
+          <div className="astro-btn-container">
+            <div className="astro-btn" onClick={() => setAstroTheme('dark')} style={{ width: '80px', height: '28px' }}>
+              Dark
+            </div>
+            <div className="astro-btn" onClick={() => setAstroTheme('light')} style={{ width: '80px', height: '28px' }}>
+              Light
+            </div>
+          </div>
         </div>
-        <div className="astro-btn" onClick={() => setAstroTheme('light')} style={{ width: '80px', height: '36px' }}>
-          Light
-        </div>
-      </div>
+      )}
 
       <Style>
         {`
           @import url(https://unpkg.com/@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css);
           .astro-btn {
-            height: 36px; 
+            height: 28px; 
             width: 80px;
             border: none;
             display: flex;
@@ -200,6 +197,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
 
         `}
       </Style>
+      {options.customCSS ? <Style>{options.customCSS}</Style> : null}
     </div>
   );
 };
