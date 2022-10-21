@@ -1,6 +1,4 @@
-// The next line is required for the css prop to work!
-/** @jsxImportSource @emotion/react */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import type { SimpleOptions } from 'types';
 import type { PanelProps } from '@grafana/data';
 import { Global, Interpolation, Theme } from '@emotion/react';
@@ -27,25 +25,33 @@ export const SimplePanel = ({ options, data, width, height }: Props) => {
 
   const handleThemeSwitch = () => {
     setMode((prev) => {
-      if (prev === 'dark') return 'light';
+      if (prev === 'dark') {
+        return 'light';
+      }
       return 'dark';
     });
   };
 
   return (
+    // @ts-ignore
     <div css={panelCss}>
+      {/* @ts-ignore */}
       <div css={examplesCss}>
+        {/* @ts-ignore */}
         <h1 css={{ ...astro.typography.display1 }}>Astro Display 1</h1>
         <h1>Astro Heading 1</h1>
         <h3>Astro Heading 3</h3>
         <p>Astro Body 1</p>
+        {/* @ts-ignore */}
         <p css={{ ...astro.typography.body2 }}>Astro Body 2</p>
+        {/* @ts-ignore */}
         <p css={{ ...astro.typography.body3 }}>Astro Body 3</p>
       </div>
 
       <h3>Astro Theme Selection</h3>
 
       <div
+        /* @ts-ignore */
         css={{
           backgroundColor: astro.color.background.base.default,
           '&:hover': {
@@ -57,6 +63,7 @@ export const SimplePanel = ({ options, data, width, height }: Props) => {
       </div>
 
       <div className="astro-btn-container">
+        {/* @ts-ignore */}
         <button css={{ marginTop: '1rem' }} onClick={handleThemeSwitch}>
           Theme Switch
         </button>
