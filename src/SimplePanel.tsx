@@ -4,6 +4,7 @@ import { SimpleOptions } from 'types';
 import { css, cx } from 'emotion';
 import { stylesFactory } from '@grafana/ui';
 import { Style } from 'react-style-tag';
+import { RuxButton } from '@astrouxds/react';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -15,17 +16,27 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     appendLightClass(astroTheme);
   }, [astroTheme]);
 
+  useEffect(() => {
+    appendLightClass(options.defaultTheme);
+  }, [options.defaultTheme]);
+
   function appendLightClass(theme?: string) {
     const body = document.querySelector('body');
     if (theme === 'light') {
       body?.classList.add('light-theme');
-      setAstroTheme('light');
     } else {
       body?.classList.remove('light-theme');
-      setAstroTheme('dark');
     }
   }
-
+  const classificationMap = {
+    unclassified: 'UNCLASSIFIED',
+    cui: 'CUI',
+    controlled: 'CONTROLLED',
+    confidential: 'CONFIDENTIAL',
+    topSecret: 'TOP SECRET',
+    secret: 'SECRET',
+    topSecretSCI: 'TOP SECRET//SCI',
+  };
   return (
     <div
       className={cx(
@@ -36,6 +47,12 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
         `
       )}
     >
+      {options.classification ? (
+        <div className={'class-banner class-' + options.classification}>
+          {classificationMap[options.classification]}
+        </div>
+      ) : null}
+
       {options.hideTheme === true ? null : (
         <div>
           <h3>Astro Theme Selection</h3>
@@ -194,9 +211,97 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
                 outline: none;
             }
             }
+            /* Tables */
+            div[role=row] {
+              &:hover {
+                background: var(--color-background-surface-hover);
+                color: var(--color-text-primary);
+              }
+            }
+            div[role=cell]{
+              &:hover {
+                background: var(--color-background-surface-hover);
+                color: var(--color-text-primary);
+              }
+            }
+            div[role=columnheader]{
+              color: var(--color-text-primary);
+              background-color: var(--color-background-surface-default);
+            }
 
+
+
+
+            /* Scrollbar */
+            .track-horizontal {
+              .thumb-horizontal {
+                background: var(--color-border-interactive-muted, rgb(43, 101, 155));
+                border-radius: 8px;
+                border: 1px solid transparent;
+                background-clip: padding-box;
+                &:hover {
+                  background-color: var(
+                    --color-background-interactive-default,
+                    rgb(58, 129, 191)
+                );
+                }
+              }
+            }
+            .track-vertical {
+              box-shadow: var(--scrollbar-shadow-inner-vertical);
+              .thumb-vertical {
+                background: var(--color-border-interactive-muted, rgb(43, 101, 155));
+                border-radius: 8px;
+                background-clip: padding-box;
+                border: 1px solid transparent;
+
+                &:hover {
+                  background-color: var(
+                    --color-background-interactive-default,
+                    rgb(58, 129, 191)
+                );
+                }
+              }
+            }
+            /* Classification banner test */
+            .class-banner {
+              height: 24px;
+              width: 100%;
+              overflow: hidden;
+              text-align: center;
+              color: var(--color-text-primary);
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .class-unclassified {
+              background: var(--classification-banner-color-background-unclassified);
+            }
+            .class-cui {
+              background: var(--classification-banner-color-background-cui);
+            }
+            .class-controlled {
+              background: var(--classification-banner-color-background-cui);
+            }
+            .class-confidential {
+              background: var(--classification-banner-color-background-confidential);
+            }
+            .class-secret {
+              background: var(--classification-banner-color-background-secret);
+            }
+            .class-topSecret {
+              background: var(--classification-banner-color-background-topsecret);
+              color: black;
+            }
+            .class-topSecretSCI {
+              background: var(--classification-banner-color-background-topsecretsci);
+              color: black;
+            }
+          
         `}
       </Style>
+      <RuxButton>HEY</RuxButton>
       {options.customCSS ? <Style>{options.customCSS}</Style> : null}
     </div>
   );

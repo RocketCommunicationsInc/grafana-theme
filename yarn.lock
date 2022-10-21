@@ -10,10 +10,22 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrouxds/tokens@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@astrouxds/tokens/-/tokens-1.0.2.tgz#82401bb27bdcc4c5623f50ccd9fdbf9ae72e5c0f"
-  integrity sha512-BGZBo6dsBxDZV8BZ33Ze3CPz8HEWLcEvNBEshH9Sv/RjnzguB/UhABQJFdcRCx9YjgGnBXSwwQpucqRjddhItg==
+"@astrouxds/astro-web-components@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@astrouxds/astro-web-components/-/astro-web-components-7.1.0.tgz#b6b64beb18854b00e48aae9a9c32de0bb8fd364c"
+  integrity sha512-LPge3xT18iIbAjEngCsRgoBsCddSZtwY3IamadNzh9hWh/GnvON+PvkdXZDYzCVsVuu4CkUwEAYMpUdCQo5+cA==
+  dependencies:
+    "@floating-ui/dom" "~1.0.1"
+    "@stencil/core" "~2.18.0"
+    date-fns "~2.21.1"
+    date-fns-tz "~1.3.3"
+
+"@astrouxds/react@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@astrouxds/react/-/react-7.1.0.tgz#36f6b52f38e03f0f4cb1fbf7b4440864dc598b68"
+  integrity sha512-LudLJvgd5Qccq0OfixGMxsaubw/omvIr/jq7YzAJNwPhv9uqVhkrlIPePhSU22cP6RvPfSmBUMK19c1iWE5KCg==
+  dependencies:
+    "@astrouxds/astro-web-components" "^7.1.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.8.3":
   version "7.18.6"
@@ -1308,6 +1320,18 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@floating-ui/core@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.0.1.tgz#00e64d74e911602c8533957af0cce5af6b2e93c8"
+  integrity sha512-bO37brCPfteXQfFY0DyNDGB3+IMe4j150KFQcgJ5aBP295p9nBGeHEs/p0czrRbtlHq4Px/yoPXO/+dOCcF4uA==
+
+"@floating-ui/dom@~1.0.1":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.0.3.tgz#b439c8a66436c2cae8d97e889f0b76cce757a6ec"
+  integrity sha512-6H1kwjkOZKabApNtXRiYHvMmYJToJ1DV7rQ3xc/WJpOABhQIOJJOdz2AOejj8X+gcybaFmBpisVTZxBZAM3V0w==
+  dependencies:
+    "@floating-ui/core" "^1.0.1"
+
 "@formatjs/ecma402-abstract@1.12.0":
   version "1.12.0"
   resolved "https://registry.npmjs.org/@formatjs/ecma402-abstract/-/ecma402-abstract-1.12.0.tgz"
@@ -2260,6 +2284,11 @@
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@stencil/core@~2.18.0":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
+  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@testing-library/dom@>=7":
   version "8.19.0"
@@ -4334,10 +4363,20 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
+date-fns-tz@~1.3.3:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.7.tgz#e8e9d2aaceba5f1cc0e677631563081fdcb0e69a"
+  integrity sha512-1t1b8zyJo+UI8aR+g3iqr5fkUHWpd58VBx8J/ZSQ+w7YrGlw80Ag4sA86qkfCXRBLmMc4I2US+aPMd4uKvwj5g==
+
 date-fns@2.29.1:
   version "2.29.1"
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
   integrity sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw==
+
+date-fns@~2.21.1:
+  version "2.21.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.21.3.tgz#8f5f6889d7a96bbcc1f0ea50239b397a83357f9b"
+  integrity sha512-HeYdzCaFflc1i4tGbj7JKMjM4cKGYoyxwcIIkHzNgCkX8xXDNJDZXgDDVchIWpN4eQc3lH37WarduXFZJOtxfw==
 
 debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"

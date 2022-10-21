@@ -25,5 +25,42 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
     path: 'hideTheme',
     category: ['Themes Options'],
   });
+  builder.addRadio({
+    path: 'classification',
+    name: 'Classification',
+    defaultValue: '',
+    settings: {
+      options: [
+        {
+          value: 'unclassified',
+          label: 'Unclassified',
+        },
+        {
+          value: 'cui',
+          label: 'CUI',
+        },
+        {
+          value: 'controlled',
+          label: 'Controlled',
+        },
+        {
+          value: 'confidential',
+          label: 'Confidential',
+        },
+        {
+          value: 'secret',
+          label: 'Secret',
+        },
+        {
+          value: 'topSecret',
+          label: 'Top Secret',
+        },
+        {
+          value: 'topSecretSCI',
+          label: 'Top Secret//SCI',
+        },
+      ],
+    },
+  });
   return builder;
 });
