@@ -16,13 +16,14 @@
     "@grafana/data": "latest",
     "@grafana/toolkit": "latest",
     "@grafana/ui": "latest",
-    "emotion": "10.0.27",
-    "@astrouxds/react": "^7.1.0"
+    "emotion": "10.0.27"
   },
   "engines": {
     "node": ">=14"
   },
   "dependencies": {
-    "react-style-tag": "^3.0.1"
+    "@emotion/react": "^11.10.4",
+    "react-style-tag": "^3.0.1",
+    "use-astro-tokens": "^0.0.3"
   }
 }

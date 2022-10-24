@@ -10,22 +10,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrouxds/astro-web-components@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@astrouxds/astro-web-components/-/astro-web-components-7.1.0.tgz#b6b64beb18854b00e48aae9a9c32de0bb8fd364c"
-  integrity sha512-LPge3xT18iIbAjEngCsRgoBsCddSZtwY3IamadNzh9hWh/GnvON+PvkdXZDYzCVsVuu4CkUwEAYMpUdCQo5+cA==
-  dependencies:
-    "@floating-ui/dom" "~1.0.1"
-    "@stencil/core" "~2.18.0"
-    date-fns "~2.21.1"
-    date-fns-tz "~1.3.3"
-
-"@astrouxds/react@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@astrouxds/react/-/react-7.1.0.tgz#36f6b52f38e03f0f4cb1fbf7b4440864dc598b68"
-  integrity sha512-LudLJvgd5Qccq0OfixGMxsaubw/omvIr/jq7YzAJNwPhv9uqVhkrlIPePhSU22cP6RvPfSmBUMK19c1iWE5KCg==
-  dependencies:
-    "@astrouxds/astro-web-components" "^7.1.0"
+"@astrouxds/tokens@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@astrouxds/tokens/-/tokens-1.0.2.tgz#82401bb27bdcc4c5623f50ccd9fdbf9ae72e5c0f"
+  integrity sha512-BGZBo6dsBxDZV8BZ33Ze3CPz8HEWLcEvNBEshH9Sv/RjnzguB/UhABQJFdcRCx9YjgGnBXSwwQpucqRjddhItg==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.8.3":
   version "7.18.6"
@@ -1146,7 +1134,7 @@
   resolved "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz"
   integrity sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg==
 
-"@emotion/babel-plugin@^11.7.1":
+"@emotion/babel-plugin@^11.10.0", "@emotion/babel-plugin@^11.7.1":
   version "11.10.2"
   resolved "https://registry.npmjs.org/@emotion/babel-plugin/-/babel-plugin-11.10.2.tgz"
   integrity sha512-xNQ57njWTFVfPAc3cjfuaPdsgLp5QOSuRsj9MA6ndEhH/AzuZM86qIQzt6rq+aGBwj3n5/TkLmU5lhAfdRmogA==
@@ -1174,7 +1162,7 @@
     "@emotion/utils" "0.11.3"
     "@emotion/weak-memoize" "0.2.5"
 
-"@emotion/cache@^11.4.0", "@emotion/cache@^11.7.1", "@emotion/cache@^11.9.3":
+"@emotion/cache@^11.10.0", "@emotion/cache@^11.4.0", "@emotion/cache@^11.7.1", "@emotion/cache@^11.9.3":
   version "11.10.3"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-11.10.3.tgz"
   integrity sha512-Psmp/7ovAa8appWh3g51goxu/z3iVms7JXOreq136D8Bbn6dYraPnmL6mdM8GThEx9vwSn92Fz+mGSjBzN8UPQ==
@@ -1229,6 +1217,20 @@
     "@emotion/weak-memoize" "^0.2.5"
     hoist-non-react-statics "^3.3.1"
 
+"@emotion/react@^11.10.4":
+  version "11.10.4"
+  resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.10.4.tgz#9dc6bccbda5d70ff68fdb204746c0e8b13a79199"
+  integrity sha512-j0AkMpr6BL8gldJZ6XQsQ8DnS9TxEQu1R+OGmDZiWjBAJtCcbt0tS3I/YffoqHXxH6MjgI7KdMbYKw3MEiU9eA==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    "@emotion/babel-plugin" "^11.10.0"
+    "@emotion/cache" "^11.10.0"
+    "@emotion/serialize" "^1.1.0"
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
+    "@emotion/utils" "^1.2.0"
+    "@emotion/weak-memoize" "^0.3.0"
+    hoist-non-react-statics "^3.3.1"
+
 "@emotion/serialize@^0.11.15", "@emotion/serialize@^0.11.16":
   version "0.11.16"
   resolved "https://registry.npmjs.org/@emotion/serialize/-/serialize-0.11.16.tgz"
@@ -1276,6 +1278,11 @@
   resolved "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.8.0.tgz"
   integrity sha512-VINS5vEYAscRl2ZUDiT3uMPlrFQupiKgHz5AA4bCH1miKBg4qtwkim1qPmJj/4WG6TreYMY111rEFsjupcOKHw==
 
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@emotion/use-insertion-effect-with-fallbacks/-/use-insertion-effect-with-fallbacks-1.0.0.tgz#ffadaec35dbb7885bd54de3fa267ab2f860294df"
+  integrity sha512-1eEgUGmkaljiBnRMTdksDV1W4kUnmwgp7X9G8B++9GYwl1lUdqSndSriIrTJ0N7LQaoauY9JJ2yhiOYK5+NI4A==
+
 "@emotion/utils@0.11.3":
   version "0.11.3"
   resolved "https://registry.npmjs.org/@emotion/utils/-/utils-0.11.3.tgz"
@@ -1319,18 +1326,6 @@
     js-yaml "^4.1.0"
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
-
-"@floating-ui/core@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.0.1.tgz#00e64d74e911602c8533957af0cce5af6b2e93c8"
-  integrity sha512-bO37brCPfteXQfFY0DyNDGB3+IMe4j150KFQcgJ5aBP295p9nBGeHEs/p0czrRbtlHq4Px/yoPXO/+dOCcF4uA==
-
-"@floating-ui/dom@~1.0.1":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.0.3.tgz#b439c8a66436c2cae8d97e889f0b76cce757a6ec"
-  integrity sha512-6H1kwjkOZKabApNtXRiYHvMmYJToJ1DV7rQ3xc/WJpOABhQIOJJOdz2AOejj8X+gcybaFmBpisVTZxBZAM3V0w==
-  dependencies:
-    "@floating-ui/core" "^1.0.1"
 
 "@formatjs/ecma402-abstract@1.12.0":
   version "1.12.0"
@@ -2284,11 +2279,6 @@
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
-
-"@stencil/core@~2.18.0":
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
-  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@testing-library/dom@>=7":
   version "8.19.0"
@@ -4363,20 +4353,10 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-date-fns-tz@~1.3.3:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.7.tgz#e8e9d2aaceba5f1cc0e677631563081fdcb0e69a"
-  integrity sha512-1t1b8zyJo+UI8aR+g3iqr5fkUHWpd58VBx8J/ZSQ+w7YrGlw80Ag4sA86qkfCXRBLmMc4I2US+aPMd4uKvwj5g==
-
 date-fns@2.29.1:
   version "2.29.1"
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.29.1.tgz"
   integrity sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw==
-
-date-fns@~2.21.1:
-  version "2.21.3"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.21.3.tgz#8f5f6889d7a96bbcc1f0ea50239b397a83357f9b"
-  integrity sha512-HeYdzCaFflc1i4tGbj7JKMjM4cKGYoyxwcIIkHzNgCkX8xXDNJDZXgDDVchIWpN4eQc3lH37WarduXFZJOtxfw==
 
 debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
@@ -9515,6 +9495,13 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-astro-tokens@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/use-astro-tokens/-/use-astro-tokens-0.0.3.tgz#b68fc9ac7e67d629507012c5271bf7493e658c03"
+  integrity sha512-0MVIRFW2Ng4fb2Uw2VCn/jmMtYTA+5G0hpRW3HbwIxcOYLUpsBWGuST5wob/3K5jEWKcwGHTtahgtNp4fZq/Ng==
+  dependencies:
+    "@astrouxds/tokens" "^1.0.2"
 
 use-memo-one@^1.1.1:
   version "1.1.3"

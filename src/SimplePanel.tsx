@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
-import { css, cx } from 'emotion';
-import { stylesFactory } from '@grafana/ui';
+// import { css, cx } from 'emotion';
+// import { stylesFactory } from '@grafana/ui';
+import { Global } from '@emotion/react';
+import { useAstroTokens, Mode } from 'use-astro-tokens';
 import { Style } from 'react-style-tag';
-import { RuxButton } from '@astrouxds/react';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
-  const styles = getStyles();
+  const [mode, setMode] = useState<Mode>(options.defaultTheme);
+  const astro = useAstroTokens({ mode });
 
-  const [astroTheme, setAstroTheme] = useState(`${options.defaultTheme}`);
-  useEffect(() => {
-    appendLightClass(astroTheme);
-  }, [astroTheme]);
+  const handleThemeSwitch = (mode: Mode) => {
+    if (mode === 'dark') {
+      setMode('dark');
+    } else setMode('light');
+  };
 
   useEffect(() => {
-    appendLightClass(options.defaultTheme);
+    handleThemeSwitch(options.defaultTheme);
   }, [options.defaultTheme]);
 
-  function appendLightClass(theme?: string) {
-    const body = document.querySelector('body');
-    if (theme === 'light') {
-      body?.classList.add('light-theme');
-    } else {
-      body?.classList.remove('light-theme');
-    }
-  }
   const classificationMap = {
     unclassified: 'UNCLASSIFIED',
     cui: 'CUI',
@@ -38,15 +33,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     topSecretSCI: 'TOP SECRET//SCI',
   };
   return (
-    <div
-      className={cx(
-        styles.wrapper,
-        css`
-          width: ${width}px;
-          height: ${height}px;
-        `
-      )}
-    >
+    <div>
       {options.classification ? (
         <div className={'class-banner class-' + options.classification}>
           {classificationMap[options.classification]}
@@ -55,263 +42,216 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
 
       {options.hideTheme === true ? null : (
         <div>
-          <h3>Astro Theme Selection</h3>
-          <div className="astro-btn-container">
-            <div className="astro-btn" onClick={() => setAstroTheme('dark')} style={{ width: '80px', height: '28px' }}>
-              Dark
-            </div>
-            <div className="astro-btn" onClick={() => setAstroTheme('light')} style={{ width: '80px', height: '28px' }}>
-              Light
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+            <div
+              className="astro-btn"
+              onClick={() => {
+                mode === 'dark' ? handleThemeSwitch('light') : handleThemeSwitch('dark');
+              }}
+              style={{ height: '28px', padding: '0.25rem 4rem' }}
+            >
+              {mode === 'dark' ? 'Light Theme' : 'Dark Theme'}
             </div>
           </div>
         </div>
       )}
-
-      <Style>
-        {`
-          @import url(https://unpkg.com/@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css);
-          .astro-btn {
-            height: 28px; 
-            width: 80px;
-            border: none;
-            display: flex;
-            position: relative;
-            margin: var(--spacing-0);
-            width: inherit;
-            padding: var(--spacing-2) var(--spacing-4);
-            border-radius: var(--radius-base);
-            color: var(--color-text-inverse);
-            font-family: var(--font-control-body-1-font-family);
-            font-size: var(--font-control-body-1-font-size);
-            font-weight: var(--font-control-body-1-font-weight);
-            line-height: var(--font-control-body-1-line-height);
-            letter-spacing: var(--font-control-body-1-letter-spacing);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            background-color: var(--color-background-interactive-default);
-            cursor: pointer;
-            &:hover {
-              border-color: transparent;
-              background-color: var(--color-background-interactive-hover);
-            }
-          }
-          .astro-btn-container  {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 100%;
-          }
-
-          /* Dashboard */
-          header{
-            background-color: var(--color-background-base-default);
-            color: var(--color-text-primary);
-          }
-          .panel-container{
-            background-color: var(--color-background-surface-default);
-            }
-          .panel-title {
-            background-color: var(--color-background-surface-default);
-          }
-            .sidemenu {
-            background-color: var(--color-background-base-default);
-            }
-            .btn{
-            background-color: var(--color-background-interactive-default);
-            border-radius: var(--radius-base);
-            background-image: none;
-            color: black;
-            }
-            svg:not(:root){
-            fill: var(--color-background-interactive-default);
-            }
-            /* Bar that shows selected nav item */
-            .dropdown::before {
-              background-color: var(--color-background-interactive-default);
-            }
-            .css-1uf1299::before {
-              background-image: none;
-              background-color: var(--color-background-interactive-default);
-            }
-            /* New row titles */
-            .dashboard-row {
-              color: var(--color-text-primary);
-            }
-            .page-toolbar{
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-              width: 100%;
-            }
-            /* Dashboard Settings */ 
-            .dashboard-settings {
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-            }
-            .dashboard-settings__aside {
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-
-            }
-            .dashboard-settings__aside + div {
-              background-color: var(--color-background-surface-default);
-              color: var(--color-text-primary);
-            }
-            /* pesky time inputs */ 
-            .css-xh38be-input-wrapper{
-              width: 100%;
-              overflow: hidden;
-              flex: 1 1 auto;
-              display: inline-flex;
-              align-items: center;
-              justify-content: start;
-              position: relative;
-              box-sizing: border-box;
-              order: 2;
-              box-shadow: var(--color-border-interactive-muted) 0 0 0 1px inset;
-              border-radius: var(--radius-base);
-              font-family: var(--font-control-body-1-font-family);
-              font-size: var(--font-control-body-1-font-size);
-              font-weight: var(--font-control-body-1-font-weight);
-              line-height: var(--font-control-body-1-line-height);
-              letter-spacing: var(--font-control-body-1-letter-spacing);
-              color: var(--color-text-primary);
-              background-color: var(--color-background-base-default);
-              &:hover {
-                box-shadow: var(--color-background-interactive-hover) 0 0 0 1px
-                    inset;
-                outline: none;
-              }
-            }
-            input { 
-              width: 100%;
-              overflow: hidden;
-              flex: 1 1 auto;
-              display: inline-flex;
-              align-items: center;
-              justify-content: start;
-              position: relative;
-              box-sizing: border-box;
-              order: 2;
-              box-shadow: var(--color-border-interactive-muted) 0 0 0 1px inset;
-              border-radius: var(--radius-base);
-              font-family: var(--font-control-body-1-font-family);
-              font-size: var(--font-control-body-1-font-size);
-              font-weight: var(--font-control-body-1-font-weight);
-              line-height: var(--font-control-body-1-line-height);
-              letter-spacing: var(--font-control-body-1-letter-spacing);
-              color: var(--color-text-primary);
-              background-color: var(--color-background-base-default);
-              &:hover {
-                box-shadow: var(--color-background-interactive-hover) 0 0 0 1px
-                    inset;
-                outline: none;
-            }
-            }
-            /* Tables */
-            div[role=row] {
-              &:hover {
-                background: var(--color-background-surface-hover);
-                color: var(--color-text-primary);
-              }
-            }
-            div[role=cell]{
-              &:hover {
-                background: var(--color-background-surface-hover);
-                color: var(--color-text-primary);
-              }
-            }
-            div[role=columnheader]{
-              color: var(--color-text-primary);
-              background-color: var(--color-background-surface-default);
-            }
-
-
-
-
-            /* Scrollbar */
-            .track-horizontal {
-              .thumb-horizontal {
-                background: var(--color-border-interactive-muted, rgb(43, 101, 155));
-                border-radius: 8px;
-                border: 1px solid transparent;
-                background-clip: padding-box;
-                &:hover {
-                  background-color: var(
-                    --color-background-interactive-default,
-                    rgb(58, 129, 191)
-                );
-                }
-              }
-            }
-            .track-vertical {
-              box-shadow: var(--scrollbar-shadow-inner-vertical);
-              .thumb-vertical {
-                background: var(--color-border-interactive-muted, rgb(43, 101, 155));
-                border-radius: 8px;
-                background-clip: padding-box;
-                border: 1px solid transparent;
-
-                &:hover {
-                  background-color: var(
-                    --color-background-interactive-default,
-                    rgb(58, 129, 191)
-                );
-                }
-              }
-            }
-            /* Classification banner test */
-            .class-banner {
-              height: 24px;
-              width: 100%;
-              overflow: hidden;
-              text-align: center;
-              color: var(--color-text-primary);
-              font-weight: 700;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .class-unclassified {
-              background: var(--classification-banner-color-background-unclassified);
-            }
-            .class-cui {
-              background: var(--classification-banner-color-background-cui);
-            }
-            .class-controlled {
-              background: var(--classification-banner-color-background-cui);
-            }
-            .class-confidential {
-              background: var(--classification-banner-color-background-confidential);
-            }
-            .class-secret {
-              background: var(--classification-banner-color-background-secret);
-            }
-            .class-topSecret {
-              background: var(--classification-banner-color-background-topsecret);
-              color: black;
-            }
-            .class-topSecretSCI {
-              background: var(--classification-banner-color-background-topsecretsci);
-              color: black;
-            }
-          
-        `}
-      </Style>
-      <RuxButton>HEY</RuxButton>
       {options.customCSS ? <Style>{options.customCSS}</Style> : null}
+      <Global
+        styles={{
+          '*': {
+            margin: astro.spacing(0),
+          },
+          header: {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.panel-container': {
+            backgroundColor: astro.color.background.surface.default,
+          },
+          '.panel-title': {
+            backgroundColor: astro.color.background.surface.default,
+          },
+          '.sidemenu': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          '.btn': {
+            backgroundColor: astro.color.background.interactive.default,
+            borderRadius: astro.radius.base,
+            backgroundImage: 'none',
+            color: astro.color.text.black,
+          },
+          'svg:not(:root)': {
+            fill: astro.color.background.interactive.default,
+          },
+          '.dropdown::before': {
+            backgroundColor: astro.color.background.interactive.default,
+          },
+          '.css-1uf1299::before': {
+            backgroundImage: 'none',
+            backgroundColor: astro.color.background.interactive.default,
+          },
+          '.dashboard-row': {
+            color: astro.color.text.primary,
+          },
+          '.page-toolbar': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            width: '100%',
+          },
+          '.dashboard-settings': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-settings__aside': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-settings__aside + div': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '.css-xh38be-input-wrapper': {
+            width: '100%',
+            overflow: 'hidden',
+            flex: '1 1 auto',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'start',
+            position: 'relative',
+            boxSizing: 'border-box',
+            order: '2',
+            boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
+            borderRadius: astro.radius.base,
+            ...astro.typography.body1,
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.base.default,
+            ':hover': {
+              boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              outline: 'none',
+            },
+          },
+          input: {
+            width: '100%',
+            overflow: 'hidden',
+            flex: '1 1 auto',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'start',
+            position: 'relative',
+            boxSizing: 'border-box',
+            order: '2',
+            boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
+            borderRadius: astro.radius.base,
+            ...astro.typography.body1,
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.base.default,
+            ':hover': {
+              boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              outline: 'none',
+            },
+          },
+          'div[role=row]': {
+            ':hover': {
+              background: astro.color.background.surface.hover,
+              color: astro.color.text.primary,
+            },
+          },
+          'div[role=cell]': {
+            ':hover': {
+              background: astro.color.background.surface.hover,
+              color: astro.color.text.primary,
+            },
+          },
+          'div[role=columnheader]': {
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.surface.default,
+          },
+          '.astro-btn': {
+            height: '28px',
+            width: '80px',
+            border: 'none',
+            display: 'flex',
+            position: 'relative',
+            margin: astro.spacing(0),
+            padding: astro.spacing(2, 4),
+            borderRadius: astro.radius.base,
+            color: astro.color.text.inverse,
+            ...astro.typography.body1,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer',
+            userSelect: 'none',
+            backgroundColor: astro.color.background.interactive.default,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.interactive.hover,
+            },
+          },
+          '.class-banner': {
+            height: '24px',
+            width: '100%',
+            overflow: 'hidden',
+            textAlign: 'center',
+            color: astro.color.text.primary,
+            fontWeight: astro.typography.fontWeight.bold,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          '.class-unclassified': {
+            background: astro.color.classification.unclassified,
+            color: astro.color.text.white,
+          },
+          '.class-cui': {
+            background: astro.color.classification.cui,
+            color: astro.color.text.white,
+          },
+          '.class-controlled': {
+            background: astro.color.classification.cui,
+            color: astro.color.text.white,
+          },
+          '.class-confidential': {
+            background: astro.color.classification.confidential,
+            color: astro.color.text.white,
+          },
+          'class-secret': {
+            background: astro.color.classification.secret,
+            color: astro.color.text.white,
+          },
+          '.class-topSecret': {
+            background: astro.color.classification.topsecret,
+            color: astro.color.text.black,
+          },
+          '.class-topSecretSCI': {
+            background: astro.color.classification.topsecretsci,
+            color: astro.color.text.black,
+          },
+          '.track-horizontal': {
+            '.thumb-horizontal': {
+              background: astro.color.border.interactive.muted,
+              borderRadius: '8px',
+              border: '1px solid transparent',
+              backgroundClip: 'padding-box',
+              ':hover': {
+                backgroundColor: astro.color.background.interactive.default,
+              },
+            },
+          },
+          '.track-vertical': {
+            '.thumb-vertical': {
+              background: astro.color.border.interactive.muted,
+              borderRadius: '8px',
+              backgroundClip: 'padding-box',
+              border: '1px solid transparent',
+              ':hover': {
+                backgroundColor: astro.color.background.interactive.default,
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 };
-
-const getStyles = stylesFactory(() => {
-  return {
-    wrapper: css`
-      position: relative;
-      text-align: center;
-    `,
-  };
-});
