@@ -1,4 +1,4 @@
-type DefaultTheme = 'dark' | 'light';
+export type DefaultTheme = 'dark' | 'light';
 type Classification = 'unclassified' | 'cui' | 'controlled' | 'confidential' | 'secret' | 'topSecret' | 'topSecretSCI';
 
 export interface SimpleOptions {

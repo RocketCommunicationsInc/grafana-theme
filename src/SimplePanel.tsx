@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
-// import { css, cx } from 'emotion';
-// import { stylesFactory } from '@grafana/ui';
 import { Global } from '@emotion/react';
 import { useAstroTokens, Mode } from 'use-astro-tokens';
-import { Style } from 'react-style-tag';
+import { Clock } from './Clock';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -16,7 +14,9 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
   const handleThemeSwitch = (mode: Mode) => {
     if (mode === 'dark') {
       setMode('dark');
-    } else setMode('light');
+    } else {
+      setMode('light');
+    }
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           {classificationMap[options.classification]}
         </div>
       ) : null}
-
+      <Clock defaultTheme={options.defaultTheme} />
       {options.hideTheme === true ? null : (
         <div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
@@ -55,24 +55,12 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           </div>
         </div>
       )}
-      {options.customCSS ? <Style>{options.customCSS}</Style> : null}
+      {/* TODO: custom CSS {options.customCSS ? <Style>{options.customCSS}</Style> : null} */}
       <Global
         styles={{
-          '*': {
-            margin: astro.spacing(0),
-          },
-          header: {
-            backgroundColor: astro.color.background.base.default,
-            color: astro.color.text.primary,
-          },
-          '.panel-container': {
-            backgroundColor: astro.color.background.surface.default,
-          },
-          '.panel-title': {
-            backgroundColor: astro.color.background.surface.default,
-          },
           '.sidemenu': {
             backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
           },
           '.btn': {
             backgroundColor: astro.color.background.interactive.default,
@@ -80,15 +68,35 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             backgroundImage: 'none',
             color: astro.color.text.black,
           },
+          'button[aria-label="Open navigation menu"]': {
+            backgroundColor: astro.color.background.surface.default,
+            ':hover': {
+              backgroundColor: astro.color.background.surface.hover,
+            },
+          },
           'svg:not(:root)': {
             fill: astro.color.background.interactive.default,
           },
           '.dropdown::before': {
             backgroundColor: astro.color.background.interactive.default,
           },
+          //! emotion named css class - find better way to target
           '.css-1uf1299::before': {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,
+          },
+          //dashboard and panels
+          header: {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.panel-container': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '.panel-title': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
           },
           '.dashboard-row': {
             color: astro.color.text.primary,
@@ -97,6 +105,35 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
             width: '100%',
+          },
+          //info tootip on panels
+          '.panel-info-corner--info .panel-info-corner-inner': {
+            backgroundColor: astro.color.background.surface.default,
+            borderLeft: `32px solid ${astro.color.background.surface.header}`,
+          },
+          '.panel-info-corner .fa': {
+            color: astro.color.text.interactive.default,
+          },
+          '.grafana-portal-container': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+            border: `1px solid ${astro.color.border.interactive}`,
+          },
+          //! Targets an auto-generated Emotion class. This classname may change in future builds.
+          '.css-7dcs73': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            color: astro.color.text.primary,
+          },
+          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::before': {
+            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          },
+          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
+            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          },
+          '.toolbar-button': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.primary,
           },
           '.dashboard-settings': {
             backgroundColor: astro.color.background.base.default,
@@ -110,7 +147,14 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          '.css-xh38be-input-wrapper': {
+          //Backround for dashboards
+          body: {
+            background: astro.color.background.base.default,
+          },
+          //inputs - div[class$="-input-wrapper"] but this makes the text inputs look weird.
+          //:is([class*="-input-wrapper "],[class$="-input-wrapper"]):is([class*="css- "], [class$="wrapper"])
+          //! supposed to be for the select inputs. Doesn't work.
+          wontwork: {
             width: '100%',
             overflow: 'hidden',
             flex: '1 1 auto',
@@ -130,7 +174,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
               outline: 'none',
             },
           },
-          input: {
+          'input[class$="-input-input"]': {
             width: '100%',
             overflow: 'hidden',
             flex: '1 1 auto',
@@ -150,22 +194,24 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
               outline: 'none',
             },
           },
+          //tables
           'div[role=row]': {
+            color: astro.color.text.primary,
             ':hover': {
               background: astro.color.background.surface.hover,
-              color: astro.color.text.primary,
             },
           },
           'div[role=cell]': {
+            color: astro.color.text.primary,
             ':hover': {
               background: astro.color.background.surface.hover,
-              color: astro.color.text.primary,
             },
           },
           'div[role=columnheader]': {
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.surface.default,
           },
+          //theme switch button
           '.astro-btn': {
             height: '28px',
             width: '80px',
@@ -189,6 +235,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
               backgroundColor: astro.color.background.interactive.hover,
             },
           },
+          //classification banners
           '.class-banner': {
             height: '24px',
             width: '100%',
@@ -228,6 +275,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             background: astro.color.classification.topsecretsci,
             color: astro.color.text.black,
           },
+          //scrollbars
           '.track-horizontal': {
             '.thumb-horizontal': {
               background: astro.color.border.interactive.muted,

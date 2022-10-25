@@ -62,5 +62,7 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
       ],
     },
   });
+  //TODO: Look into adding a custom CSS option to panel options
+
   return builder;
 });
