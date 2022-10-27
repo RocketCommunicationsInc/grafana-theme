@@ -23,7 +23,6 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
   builder.addBooleanSwitch({
     name: 'Hide Theme Picker',
     path: 'hideTheme',
-    category: ['Themes Options'],
   });
   builder.addRadio({
     path: 'classification',
@@ -65,7 +64,6 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
   builder.addBooleanSwitch({
     name: 'Include Clock',
     path: 'clock',
-    category: ['Themes Options'],
   });
   builder.addRadio({
     path: 'format',

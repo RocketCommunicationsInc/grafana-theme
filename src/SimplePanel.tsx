@@ -95,10 +95,19 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             color: astro.color.text.primary,
           },
           '.panel-title': {
-            backgroundColor: astro.color.background.surface.default,
+            backgroundColor: astro.color.background.surface.header,
             color: astro.color.text.primary,
+            h2: {
+              ...astro.typography.h4,
+            },
           },
           '.dashboard-row': {
+            color: astro.color.text.primary,
+          },
+          '.dashboard-row__title': {
+            color: astro.color.text.primary,
+          },
+          'nav a': {
             color: astro.color.text.primary,
           },
           '.page-toolbar': {
@@ -190,12 +199,14 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           //tables
           'div[role=row]': {
             color: astro.color.text.primary,
+            borderColor: astro.color.background.base.default,
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
           'div[role=cell]': {
             color: astro.color.text.primary,
+            borderColor: astro.color.background.base.default,
             ':hover': {
               background: astro.color.background.surface.hover,
             },
@@ -203,6 +214,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           'div[role=columnheader]': {
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.surface.default,
+            borderColor: astro.color.background.base.default,
           },
           //Astro Panel CSS
           //theme switch button
