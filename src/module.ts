@@ -1,8 +1,8 @@
 import { PanelPlugin } from '@grafana/data';
-import { SimpleOptions } from './types';
-import { SimplePanel } from './SimplePanel';
+import { AstroOptions } from './types';
+import { AstroPanel } from './AstroPanel';
 
-export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
+export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions((builder) => {
   builder.addRadio({
     path: 'defaultTheme',
     name: 'Default Theme',

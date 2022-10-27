@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PanelProps } from '@grafana/data';
-import { SimpleOptions } from 'types';
+import { AstroOptions } from 'types';
 import { Global } from '@emotion/react';
 import { useAstroTokens, Mode } from 'use-astro-tokens';
 import { Clock } from './Clock';
 
-interface Props extends PanelProps<SimpleOptions> {}
+interface Props extends PanelProps<AstroOptions> {}
 
-export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
+export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) => {
   const [mode, setMode] = useState<Mode>(options.defaultTheme);
   const astro = useAstroTokens({ mode });
 
