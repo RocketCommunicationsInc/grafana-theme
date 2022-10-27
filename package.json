@@ -22,7 +22,8 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@astrouxds/tokens": "^1.0.2",
-    "react-style-tag": "^3.0.1"
+    "@emotion/react": "^11.10.4",
+    "date-fns": "^2.29.3",
+    "use-astro-tokens": "^0.0.3"
   }
 }

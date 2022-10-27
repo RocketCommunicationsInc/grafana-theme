@@ -3,56 +3,92 @@ import { SimpleOptions } from './types';
 import { SimplePanel } from './SimplePanel';
 
 export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOptions((builder) => {
-  return builder
-    .addTextInput({
-      path: 'text',
-      name: 'Simple text option',
-      description: 'Description of panel option',
-      defaultValue: 'Default value of text input option',
-    })
-    .addBooleanSwitch({
-      path: 'showSeriesCount',
-      name: 'Show series counter',
-      defaultValue: false,
-    })
-    .addRadio({
-      path: 'color',
-      name: 'Circle color',
-      defaultValue: 'red',
-      settings: {
-        options: [
-          {
-            value: 'green',
-            label: 'Green',
-          },
-          {
-            value: 'blue',
-            label: 'Blue',
-          },
-        ],
-      },
-    })
-    .addRadio({
-      path: 'seriesCountSize',
-      defaultValue: 'sm',
-      name: 'Series counter size',
-      settings: {
-        options: [
-          {
-            value: 'sm',
-            label: 'Small',
-          },
-          {
-            value: 'md',
-            label: 'Medium',
-          },
-          {
-            value: 'lg',
-            label: 'Large',
-          },
-        ],
-      },
+  builder.addRadio({
+    path: 'defaultTheme',
+    name: 'Default Theme',
+    defaultValue: 'dark',
+    settings: {
+      options: [
+        {
+          value: 'dark',
+          label: 'Dark',
+        },
+        {
+          value: 'light',
+          label: 'Light',
+        },
+      ],
+    },
+  });
+  builder.addBooleanSwitch({
+    name: 'Hide Theme Picker',
+    path: 'hideTheme',
+    category: ['Themes Options'],
+  });
+  builder.addRadio({
+    path: 'classification',
+    name: 'Classification',
+    defaultValue: '',
+    settings: {
+      options: [
+        {
+          value: 'unclassified',
+          label: 'Unclassified',
+        },
+        {
+          value: 'cui',
+          label: 'CUI',
+        },
+        {
+          value: 'controlled',
+          label: 'Controlled',
+        },
+        {
+          value: 'confidential',
+          label: 'Confidential',
+        },
+        {
+          value: 'secret',
+          label: 'Secret',
+        },
+        {
+          value: 'topSecret',
+          label: 'Top Secret',
+        },
+        {
+          value: 'topSecretSCI',
+          label: 'Top Secret//SCI',
+        },
+      ],
+    },
+  });
+  builder.addBooleanSwitch({
+    name: 'Include Clock',
+    path: 'clock',
+    category: ['Themes Options'],
+  });
+  builder.addRadio({
+    path: 'format',
+    name: 'Format Astro Content',
+    defaultValue: 'center',
+    settings: {
+      options: [
+        {
+          value: 'left',
+          label: 'Left',
+        },
+        {
+          value: 'center',
+          label: 'Center',
+        },
+        {
+          value: 'right',
+          label: 'Right',
+        },
+      ],
+    },
+  });
+  //TODO: Look into adding a custom CSS option to panel options
 
-      showIf: (config) => config.showSeriesCount,
-    });
+  return builder;
 });

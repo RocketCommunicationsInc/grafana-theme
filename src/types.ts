@@ -1,9 +1,11 @@
-type SeriesSize = 'sm' | 'md' | 'lg';
-type CircleColor = 'blue' | 'green';
-
+export type DefaultTheme = 'dark' | 'light';
+type Classification = 'unclassified' | 'cui' | 'controlled' | 'confidential' | 'secret' | 'topSecret' | 'topSecretSCI';
+type Format = 'left' | 'center' | 'right';
 export interface SimpleOptions {
-  text: string;
-  showSeriesCount: boolean;
-  seriesCountSize: SeriesSize;
-  color: CircleColor;
+  defaultTheme: DefaultTheme;
+  customCSS: string;
+  hideTheme: boolean;
+  classification: Classification;
+  clock: boolean;
+  format: Format;
 }

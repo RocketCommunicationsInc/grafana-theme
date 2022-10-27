@@ -1,214 +1,315 @@
 import React, { useState, useEffect } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
-import { css, cx } from 'emotion';
-import { stylesFactory } from '@grafana/ui';
-import { Style } from 'react-style-tag';
+import { Global } from '@emotion/react';
+import { useAstroTokens, Mode } from 'use-astro-tokens';
+import { Clock } from './Clock';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
-  const styles = getStyles();
-  // let color: string;
-  // switch (options.color) {
-  //   case 'green':
-  //     color = theme.palette.greenBase;
-  //     break;
-  //   case 'blue':
-  //     color = theme.palette.blue95;
-  //     break;
-  // }
+  const [mode, setMode] = useState<Mode>(options.defaultTheme);
+  const astro = useAstroTokens({ mode });
 
-  const [astroTheme, setAstroTheme] = useState('dark');
-  useEffect(() => {
-    appenedLightClass();
-  });
-
-  function appenedLightClass() {
-    const body = document.querySelector('body');
-    if (astroTheme === 'light') {
-      body?.classList.add('light-theme');
+  const handleThemeSwitch = (mode: Mode) => {
+    if (mode === 'dark') {
+      setMode('dark');
     } else {
-      body?.classList.remove('light-theme');
+      setMode('light');
     }
-  }
+  };
 
+  useEffect(() => {
+    handleThemeSwitch(options.defaultTheme);
+  }, [options.defaultTheme]);
+
+  const classificationMap = {
+    unclassified: 'UNCLASSIFIED',
+    cui: 'CUI',
+    controlled: 'CONTROLLED',
+    confidential: 'CONFIDENTIAL',
+    topSecret: 'TOP SECRET',
+    secret: 'SECRET',
+    topSecretSCI: 'TOP SECRET//SCI',
+  };
   return (
-    <div
-      className={cx(
-        styles.wrapper,
-        css`
-          width: ${width}px;
-          height: ${height}px;
-        `
+    <div className={`astro-panel-container astro-panel-container--${options.format}`}>
+      {options.classification ? (
+        <div className={'class-banner class-' + options.classification}>
+          {classificationMap[options.classification]}
+        </div>
+      ) : null}
+      {options.clock ? <Clock defaultTheme={options.defaultTheme} /> : null}
+      {options.hideTheme === true ? null : (
+        <div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
+            <div
+              className="astro-btn"
+              onClick={() => {
+                mode === 'dark' ? handleThemeSwitch('light') : handleThemeSwitch('dark');
+              }}
+              style={{ height: '28px', padding: '0.25rem 4rem' }}
+            >
+              {mode === 'dark' ? 'Light Theme' : 'Dark Theme'}
+            </div>
+          </div>
+        </div>
       )}
-    >
-      <h3>Astro Theme Selection</h3>
-      <div className="astro-btn-container">
-        <div className="astro-btn" onClick={() => setAstroTheme('dark')} style={{ width: '80px', height: '36px' }}>
-          Dark
-        </div>
-        <div className="astro-btn" onClick={() => setAstroTheme('light')} style={{ width: '80px', height: '36px' }}>
-          Light
-        </div>
-      </div>
-
-      <Style>
-        {`
-          @import url(https://unpkg.com/@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css);
-          .astro-btn {
-            height: 36px; 
-            width: 80px;
-            border: none;
-            display: flex;
-            position: relative;
-            margin: var(--spacing-0);
-            width: inherit;
-            padding: var(--spacing-2) var(--spacing-4);
-            border-radius: var(--radius-base);
-            color: var(--color-text-inverse);
-            font-family: var(--font-control-body-1-font-family);
-            font-size: var(--font-control-body-1-font-size);
-            font-weight: var(--font-control-body-1-font-weight);
-            line-height: var(--font-control-body-1-line-height);
-            letter-spacing: var(--font-control-body-1-letter-spacing);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-            background-color: var(--color-background-interactive-default);
-            cursor: pointer;
-            &:hover {
-              border-color: transparent;
-              background-color: var(--color-background-interactive-hover);
-            }
-          }
-          .astro-btn-container  {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 100%;
-          }
-
-          /* Dashboard */
-          header{
-            background-color: var(--color-background-base-default);
-            color: var(--color-text-primary);
-          }
-          .panel-container{
-            background-color: var(--color-background-surface-default);
-            }
-          .panel-title {
-            background-color: var(--color-background-surface-default);
-          }
-            .sidemenu {
-            background-color: var(--color-background-base-default);
-            }
-            .btn{
-            background-color: var(--color-background-interactive-default);
-            border-radius: var(--radius-base);
-            background-image: none;
-            color: black;
-            }
-            svg:not(:root){
-            fill: var(--color-background-interactive-default);
-            }
-            /* Bar that shows selected nav item */
-            .dropdown::before {
-              background-color: var(--color-background-interactive-default);
-            }
-            .css-1uf1299::before {
-              background-image: none;
-              background-color: var(--color-background-interactive-default);
-            }
-            /* New row titles */
-            .dashboard-row {
-              color: var(--color-text-primary);
-            }
-            .page-toolbar{
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-              width: 100%;
-            }
-            /* Dashboard Settings */ 
-            .dashboard-settings {
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-            }
-            .dashboard-settings__aside {
-              background-color: var(--color-background-base-default);
-              color: var(--color-text-primary);
-
-            }
-            .dashboard-settings__aside + div {
-              background-color: var(--color-background-surface-default);
-              color: var(--color-text-primary);
-            }
-            /* pesky time inputs */ 
-            .css-xh38be-input-wrapper{
-              width: 100%;
-              overflow: hidden;
-              flex: 1 1 auto;
-              display: inline-flex;
-              align-items: center;
-              justify-content: start;
-              position: relative;
-              box-sizing: border-box;
-              order: 2;
-              box-shadow: var(--color-border-interactive-muted) 0 0 0 1px inset;
-              border-radius: var(--radius-base);
-              font-family: var(--font-control-body-1-font-family);
-              font-size: var(--font-control-body-1-font-size);
-              font-weight: var(--font-control-body-1-font-weight);
-              line-height: var(--font-control-body-1-line-height);
-              letter-spacing: var(--font-control-body-1-letter-spacing);
-              color: var(--color-text-primary);
-              background-color: var(--color-background-base-default);
-              &:hover {
-                box-shadow: var(--color-background-interactive-hover) 0 0 0 1px
-                    inset;
-                outline: none;
-              }
-            }
-            input { 
-              width: 100%;
-              overflow: hidden;
-              flex: 1 1 auto;
-              display: inline-flex;
-              align-items: center;
-              justify-content: start;
-              position: relative;
-              box-sizing: border-box;
-              order: 2;
-              box-shadow: var(--color-border-interactive-muted) 0 0 0 1px inset;
-              border-radius: var(--radius-base);
-              font-family: var(--font-control-body-1-font-family);
-              font-size: var(--font-control-body-1-font-size);
-              font-weight: var(--font-control-body-1-font-weight);
-              line-height: var(--font-control-body-1-line-height);
-              letter-spacing: var(--font-control-body-1-letter-spacing);
-              color: var(--color-text-primary);
-              background-color: var(--color-background-base-default);
-              &:hover {
-                box-shadow: var(--color-background-interactive-hover) 0 0 0 1px
-                    inset;
-                outline: none;
-            }
-            }
-
-        `}
-      </Style>
+      {/* TODO: custom CSS {options.customCSS ? <Style>{options.customCSS}</Style> : null} */}
+      <Global
+        styles={{
+          '.sidemenu': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.btn': {
+            backgroundColor: astro.color.background.interactive.default,
+            borderRadius: astro.radius.base,
+            backgroundImage: 'none',
+            color: astro.color.text.black,
+          },
+          'button[aria-label="Open navigation menu"]': {
+            backgroundColor: astro.color.background.surface.default,
+            ':hover': {
+              backgroundColor: astro.color.background.surface.hover,
+            },
+          },
+          'svg:not(:root)': {
+            fill: astro.color.background.interactive.default,
+          },
+          '.dropdown::before': {
+            backgroundColor: astro.color.background.interactive.default,
+          },
+          //! emotion named css class - find better way to target
+          '.css-1uf1299::before': {
+            backgroundImage: 'none',
+            backgroundColor: astro.color.background.interactive.default,
+          },
+          //dashboard and panels
+          header: {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.panel-container': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '.panel-title': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-row': {
+            color: astro.color.text.primary,
+          },
+          '.page-toolbar': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            width: '100%',
+          },
+          //info tootip on panels
+          '.panel-info-corner--info .panel-info-corner-inner': {
+            backgroundColor: astro.color.background.surface.default,
+            borderLeft: `32px solid ${astro.color.background.surface.header}`,
+          },
+          '.panel-info-corner .fa': {
+            color: astro.color.text.interactive.default,
+          },
+          '.grafana-portal-container': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+            border: `1px solid ${astro.color.border.interactive}`,
+          },
+          //! Targets an auto-generated Emotion class. This classname may change in future builds.
+          '.css-7dcs73': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            color: astro.color.text.primary,
+          },
+          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::before': {
+            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          },
+          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
+            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          },
+          '.toolbar-button': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-settings': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-settings__aside': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.dashboard-settings__aside + div': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          //Annotation on a graph
+          'div[data-popper-reference-hidden="false"]': {
+            background: astro.color.background.surface.default,
+          },
+          'div[data-popper-reference-hidden="false"] > :first-child': {
+            background: astro.color.background.surface.header,
+          },
+          'form div textarea[class^="css-"]': {
+            ...astro.typography.body1,
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            ':hover': {
+              outline: 'none',
+              borderColor: astro.color.border.interactive.hover,
+            },
+          },
+          //Backround for dashboards
+          body: {
+            background: astro.color.background.base.default,
+          },
+          'input[class$="-input-input"]': {
+            width: '100%',
+            overflow: 'hidden',
+            flex: '1 1 auto',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'start',
+            position: 'relative',
+            boxSizing: 'border-box',
+            order: '2',
+            boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
+            borderRadius: astro.radius.base,
+            ...astro.typography.body1,
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.base.default,
+            ':hover': {
+              boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              outline: 'none',
+            },
+          },
+          //tables
+          'div[role=row]': {
+            color: astro.color.text.primary,
+            ':hover': {
+              background: astro.color.background.surface.hover,
+            },
+          },
+          'div[role=cell]': {
+            color: astro.color.text.primary,
+            ':hover': {
+              background: astro.color.background.surface.hover,
+            },
+          },
+          'div[role=columnheader]': {
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.surface.default,
+          },
+          //Astro Panel CSS
+          //theme switch button
+          '.astro-btn': {
+            height: '28px',
+            width: '80px',
+            border: 'none',
+            display: 'flex',
+            position: 'relative',
+            margin: astro.spacing(0),
+            padding: astro.spacing(2, 4),
+            borderRadius: astro.radius.base,
+            color: astro.color.text.inverse,
+            ...astro.typography.body1,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer',
+            userSelect: 'none',
+            backgroundColor: astro.color.background.interactive.default,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.interactive.hover,
+            },
+          },
+          //format content left, center, right
+          '.astro-panel-container': {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignContent: 'center',
+          },
+          '.astro-panel-container--left': {
+            alignItems: 'flex-start',
+          },
+          '.astro-panel-container--center': {
+            alignItems: 'center',
+          },
+          '.astro-panel-container--right': {
+            alignItems: 'flex-end',
+          },
+          //classification banners
+          '.class-banner': {
+            height: '24px',
+            width: '100%',
+            overflow: 'hidden',
+            textAlign: 'center',
+            color: astro.color.text.primary,
+            fontWeight: astro.typography.fontWeight.bold,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          '.class-unclassified': {
+            background: astro.color.classification.unclassified,
+            color: astro.color.text.white,
+          },
+          '.class-cui': {
+            background: astro.color.classification.cui,
+            color: astro.color.text.white,
+          },
+          '.class-controlled': {
+            background: astro.color.classification.cui,
+            color: astro.color.text.white,
+          },
+          '.class-confidential': {
+            background: astro.color.classification.confidential,
+            color: astro.color.text.white,
+          },
+          '.class-secret': {
+            background: astro.color.classification.secret,
+            color: astro.color.text.white,
+          },
+          '.class-topSecret': {
+            background: astro.color.classification.topsecret,
+            color: astro.color.text.black,
+          },
+          '.class-topSecretSCI': {
+            background: astro.color.classification.topsecretsci,
+            color: astro.color.text.black,
+          },
+          //scrollbars
+          '.track-horizontal': {
+            '.thumb-horizontal': {
+              background: astro.color.border.interactive.muted,
+              borderRadius: '8px',
+              border: '1px solid transparent',
+              backgroundClip: 'padding-box',
+              ':hover': {
+                backgroundColor: astro.color.background.interactive.default,
+              },
+            },
+          },
+          '.track-vertical': {
+            '.thumb-vertical': {
+              background: astro.color.border.interactive.muted,
+              borderRadius: '8px',
+              backgroundClip: 'padding-box',
+              border: '1px solid transparent',
+              ':hover': {
+                backgroundColor: astro.color.background.interactive.default,
+              },
+            },
+          },
+        }}
+      />
     </div>
   );
 };
-
-const getStyles = stylesFactory(() => {
-  return {
-    wrapper: css`
-      position: relative;
-      text-align: center;
-    `,
-  };
-});
