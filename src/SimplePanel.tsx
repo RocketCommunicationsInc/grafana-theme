@@ -33,13 +33,13 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     topSecretSCI: 'TOP SECRET//SCI',
   };
   return (
-    <div>
+    <div className={`astro-panel-container astro-panel-container--${options.format}`}>
       {options.classification ? (
         <div className={'class-banner class-' + options.classification}>
           {classificationMap[options.classification]}
         </div>
       ) : null}
-      <Clock defaultTheme={options.defaultTheme} />
+      {options.clock ? <Clock defaultTheme={options.defaultTheme} /> : null}
       {options.hideTheme === true ? null : (
         <div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem' }}>
@@ -147,32 +147,25 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
+          //Annotation on a graph
+          'div[data-popper-reference-hidden="false"]': {
+            background: astro.color.background.surface.default,
+          },
+          'div[data-popper-reference-hidden="false"] > :first-child': {
+            background: astro.color.background.surface.header,
+          },
+          'form div textarea[class^="css-"]': {
+            ...astro.typography.body1,
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            ':hover': {
+              outline: 'none',
+              borderColor: astro.color.border.interactive.hover,
+            },
+          },
           //Backround for dashboards
           body: {
             background: astro.color.background.base.default,
-          },
-          //inputs - div[class$="-input-wrapper"] but this makes the text inputs look weird.
-          //:is([class*="-input-wrapper "],[class$="-input-wrapper"]):is([class*="css- "], [class$="wrapper"])
-          //! supposed to be for the select inputs. Doesn't work.
-          wontwork: {
-            width: '100%',
-            overflow: 'hidden',
-            flex: '1 1 auto',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'start',
-            position: 'relative',
-            boxSizing: 'border-box',
-            order: '2',
-            boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
-            borderRadius: astro.radius.base,
-            ...astro.typography.body1,
-            color: astro.color.text.primary,
-            backgroundColor: astro.color.background.base.default,
-            ':hover': {
-              boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
-              outline: 'none',
-            },
           },
           'input[class$="-input-input"]': {
             width: '100%',
@@ -211,6 +204,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.surface.default,
           },
+          //Astro Panel CSS
           //theme switch button
           '.astro-btn': {
             height: '28px',
@@ -234,6 +228,22 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
               borderColor: 'transparent',
               backgroundColor: astro.color.background.interactive.hover,
             },
+          },
+          //format content left, center, right
+          '.astro-panel-container': {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignContent: 'center',
+          },
+          '.astro-panel-container--left': {
+            alignItems: 'flex-start',
+          },
+          '.astro-panel-container--center': {
+            alignItems: 'center',
+          },
+          '.astro-panel-container--right': {
+            alignItems: 'flex-end',
           },
           //classification banners
           '.class-banner': {
@@ -263,7 +273,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
             background: astro.color.classification.confidential,
             color: astro.color.text.white,
           },
-          'class-secret': {
+          '.class-secret': {
             background: astro.color.classification.secret,
             color: astro.color.text.white,
           },

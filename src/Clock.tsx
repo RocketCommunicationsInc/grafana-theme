@@ -15,29 +15,31 @@ export const Clock: React.FC<Props> = (props) => {
   const astro = useAstroTokens({ mode });
 
   const [time, setTime] = useState<Date>(new Date(Date.now()));
-  const [dayOfYear, setDayOfYear] = useState(getDayOfYear(time));
+  const [dayOfYear, setDayOfYear] = useState(
+    getDayOfYear(new Date(time.getUTCFullYear(), time.getUTCMonth(), time.getUTCDate()))
+  );
 
   const [clockTime, setClockTime] = useState(time.toUTCString().slice(17, -3));
 
-  //? Do I need to clear interval?
-  function startTimer() {
-    window.setInterval(() => {
-      updateTime();
-    }, 1000);
-  }
-
   function updateTime() {
     // convert time to UTC
-    let rawClockTime = new Date(Date.now()).toUTCString();
-    let formattedClocktime = rawClockTime.slice(17, -3);
+    let rawClockTime = new Date(Date.now());
+    let rawClockTimeUTC = rawClockTime.toUTCString();
+    let jDayUTC = getDayOfYear(
+      new Date(rawClockTime.getUTCFullYear(), rawClockTime.getUTCMonth(), rawClockTime.getUTCDate())
+    );
+    let formattedClocktime = rawClockTimeUTC.slice(17, -3);
     setClockTime(formattedClocktime);
     setTime(new Date(Date.now()));
-    setDayOfYear(getDayOfYear(time));
+    setDayOfYear(jDayUTC);
   }
 
   useEffect(() => {
-    startTimer();
-  });
+    const timerId = setInterval(updateTime, 1000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  }, []);
 
   return (
     <div className="rux-clock">

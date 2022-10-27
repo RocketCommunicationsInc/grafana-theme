@@ -62,6 +62,32 @@ export const plugin = new PanelPlugin<SimpleOptions>(SimplePanel).setPanelOption
       ],
     },
   });
+  builder.addBooleanSwitch({
+    name: 'Include Clock',
+    path: 'clock',
+    category: ['Themes Options'],
+  });
+  builder.addRadio({
+    path: 'format',
+    name: 'Format Astro Content',
+    defaultValue: 'center',
+    settings: {
+      options: [
+        {
+          value: 'left',
+          label: 'Left',
+        },
+        {
+          value: 'center',
+          label: 'Center',
+        },
+        {
+          value: 'right',
+          label: 'Right',
+        },
+      ],
+    },
+  });
   //TODO: Look into adding a custom CSS option to panel options
 
   return builder;
