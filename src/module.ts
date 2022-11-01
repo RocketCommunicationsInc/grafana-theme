@@ -86,7 +86,6 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
       ],
     },
   });
-  //TODO: Look into adding a custom CSS option to panel options
 
   return builder;
 });
