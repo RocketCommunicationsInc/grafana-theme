@@ -55,7 +55,6 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
           </div>
         </div>
       )}
-      {/* TODO: custom CSS {options.customCSS ? <Style>{options.customCSS}</Style> : null} */}
       <Global
         styles={{
           '.sidemenu': {
@@ -80,7 +79,7 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
           '.dropdown::before': {
             backgroundColor: astro.color.background.interactive.default,
           },
-          //! emotion named css class - find better way to target
+          //! Targets an auto-generated Emotion class. This classname may change in future builds.
           '.css-1uf1299::before': {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,

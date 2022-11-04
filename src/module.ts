@@ -23,11 +23,12 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
   builder.addBooleanSwitch({
     name: 'Hide Theme Picker',
     path: 'hideTheme',
+    defaultValue: false,
   });
   builder.addRadio({
     path: 'classification',
     name: 'Classification',
-    defaultValue: '',
+    defaultValue: 'unclassified',
     settings: {
       options: [
         {
@@ -64,6 +65,7 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
   builder.addBooleanSwitch({
     name: 'Include Clock',
     path: 'clock',
+    defaultValue: false,
   });
   builder.addRadio({
     path: 'format',
@@ -86,7 +88,6 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
       ],
     },
   });
-  //TODO: Look into adding a custom CSS option to panel options
 
   return builder;
 });
