@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
   "type": "panel",
-  "name": "Astro",
+  "name": "Astro Theme",
   "id": "rocketcom-astrotheme-panel",
   "info": {
     "description": "An Astro UXDS theme for Grafana dashboards.",
