@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { PanelProps } from '@grafana/data';
 import { DefaultTheme } from 'types';
 import { Global } from '@emotion/react';
 import { useAstroTokens, Mode } from 'use-astro-tokens';
@@ -10,8 +9,7 @@ interface Props {
 }
 
 export const Clock: React.FC<Props> = (props) => {
-  //@ts-ignore
-  const [mode, setMode] = useState<Mode>(props.defaultTheme);
+  const [mode] = useState<Mode>(props.defaultTheme);
   const astro = useAstroTokens({ mode });
 
   const [time, setTime] = useState<Date>(new Date(Date.now()));

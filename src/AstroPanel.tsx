@@ -7,7 +7,7 @@ import { Clock } from './Clock';
 
 interface Props extends PanelProps<AstroOptions> {}
 
-export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) => {
+export const AstroPanel: React.FC<Props> = ({ options }) => {
   const [mode, setMode] = useState<Mode>(options.defaultTheme);
   const astro = useAstroTokens({ mode });
 
@@ -56,6 +56,7 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
         </div>
       )}
       <Global
+        //@ts-ignore
         styles={{
           '.sidemenu': {
             backgroundColor: astro.color.background.base.default,
@@ -76,13 +77,74 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
           'svg:not(:root)': {
             fill: astro.color.background.interactive.default,
           },
-          '.dropdown::before': {
-            backgroundColor: astro.color.background.interactive.default,
-          },
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
+          //! This is the bar next to the selected icon in the nav. The important override here is the backgroundImage: none;
           '.css-1uf1299::before': {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,
+          },
+          //timepicker details
+          '#TimePickerContent': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+            button: {
+              background: astro.color.background.interactive.default,
+              color: astro.color.text.inverse,
+              borderRadius: astro.radius.base,
+              '&:hover': {
+                background: astro.color.background.interactive.hover,
+                cursor: 'pointer',
+              },
+              svg: {
+                fill: 'black',
+              },
+            },
+          },
+          'button[role="menuitemradio"]': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              background: astro.color.background.interactive.hover,
+              color: astro.color.text.inverse,
+            },
+          },
+          'button[aria-checked="true"]': {
+            background: astro.color.background.surface.selected,
+          },
+          //pop up menus from hovering icons in nav
+          'ul[role="menu"]': {
+            background: astro.color.background.base.default,
+            color: astro.color.text.interactive.default,
+            border: `1px solid ${astro.palette.brightblue[700]}`,
+          },
+          'ul[role="menu"] > li[role="menuitem"] a': {
+            background: astro.color.background.surface.header,
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+              background: astro.color.background.base.hover,
+            },
+          },
+          //Nav item pop-up-menus that only have a button
+          'ul[role="menu"] > li[role="menuitem"] > div > button': {
+            background: astro.color.background.surface.header,
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+              background: astro.color.background.base.hover,
+            },
+          },
+          'li[role="menuitem"] a': {
+            background: astro.color.background.base.default,
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+              background: astro.color.background.base.hover,
+            },
+          },
+          //menu item divider
+          'div[data-testid="dropdown-child-divider"]': {
+            borderBottom: '1px solid #51555b',
           },
           //dashboard and panels
           header: {
@@ -176,23 +238,43 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
             background: astro.color.background.base.default,
           },
           'input[class$="-input-input"]': {
-            width: '100%',
-            overflow: 'hidden',
-            flex: '1 1 auto',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'start',
-            position: 'relative',
-            boxSizing: 'border-box',
-            order: '2',
-            boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
+            // boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
             ...astro.typography.body1,
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.base.default,
             ':hover': {
-              boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              // boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
+            },
+          },
+          //annotation menu
+          'div[class*="-input-wrapper"]': {
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            borderRadius: astro.radius.base,
+            ...astro.typography.body1,
+            color: astro.color.text.primary,
+            backgroundColor: astro.color.background.base.default,
+            ':hover': {
+              // boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              outline: 'none',
+            },
+          },
+          'div[class$="layoutChildrenWrapper"] button': {
+            backgroundColor: astro.color.background.interactive.default,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.inverse,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.interactive.hover,
+              color: astro.color.text.inverse,
+            },
+            svg: {
+              fill: astro.color.text.black,
             },
           },
           //tables
@@ -203,17 +285,25 @@ export const AstroPanel: React.FC<Props> = ({ options, data, width, height }) =>
               background: astro.color.background.surface.hover,
             },
           },
+          'div[role=row] > div[role=cell]': {
+            borderTop: `1px solid ${astro.color.background.base.default}`,
+          },
           'div[role=cell]': {
             color: astro.color.text.primary,
             borderColor: astro.color.background.base.default,
+            borderBottomWidth: '1px',
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
           'div[role=columnheader]': {
-            color: astro.color.text.primary,
-            backgroundColor: astro.color.background.surface.default,
             borderColor: astro.color.background.base.default,
+            background: astro.color.background.surface.default,
+            borderBottom: `1px solid ${astro.color.border.interactive.muted}`,
+            button: {
+              ...astro.typography.h4,
+              color: astro.color.text.primary,
+            },
           },
           //Astro Panel CSS
           //theme switch button
