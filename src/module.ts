@@ -59,6 +59,10 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
           value: 'topSecretSCI',
           label: 'Top Secret//SCI',
         },
+        {
+          value: undefined,
+          label: 'None',
+        },
       ],
     },
   });
