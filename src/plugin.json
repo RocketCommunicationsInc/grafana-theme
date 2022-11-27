@@ -24,7 +24,24 @@
         "url": "https://github.com/grafana/grafana-starter-panel/blob/master/LICENSE"
       }
     ],
-    "screenshots": [],
+    "screenshots": [
+      {
+        "name": "Panel with clock and theme picker",
+        "path": "./img/screenshots/full.png"
+      },
+      {
+        "name": "Light theme panel with clock and theme picker",
+        "path": "./img/screenshots/full-light-theme.png"
+      },
+      {
+        "name": "Creating Astro Theme panel",
+        "path": "./img/screenshots/NewPanelMenu.png"
+      },
+      {
+        "name": "Panel next to themed nav",
+        "path": "./img/screenshots/PanelNextToNav.png"
+      }
+    ],
     "version": "1.0.0",
     "updated": "2022-11-08"
   },
