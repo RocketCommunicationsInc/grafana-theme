@@ -46,7 +46,7 @@
     "updated": "2022-11-08"
   },
   "dependencies": {
-    "grafanaDependency": ">=7.0.0",
+    "grafanaDependency": ">=9.0.0",
     "plugins": []
   }
 }
