@@ -21,7 +21,7 @@ The Astro plugin for Grafana implements the AstroUX Design System and implements
 
 ## Plugin Dependencies
 
-- Grafana >=7.0.0
+- Grafana >=9.0.0
 - [@emotion/react](https://www.npmjs.com/package/@emotion/react) ^11.10.4
   - Used in conjunction with [use-astro-tokens](https://www.npmjs.com/package/use-astro-tokens) to provide [Astro UXDS design tokens](https://www.astrouxds.com/design-tokens/getting-started/).
 - [date-fns](https://www.npmjs.com/package/date-fns) ^2.29.3
