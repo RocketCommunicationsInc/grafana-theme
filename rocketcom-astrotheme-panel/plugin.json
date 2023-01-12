@@ -1,0 +1,52 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "panel",
+  "name": "Astro Theme",
+  "id": "rocketcom-astrotheme-panel",
+  "info": {
+    "description": "An Astro UXDS theme for Grafana dashboards.",
+    "author": {
+      "name": "Micah Jones",
+      "url": "https://www.astrouxds.com"
+    },
+    "keywords": ["Theme", "Astro", "UI", "UX", "Space Force"],
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/grafana/grafana-starter-panel"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/grafana/grafana-starter-panel/blob/master/LICENSE"
+      }
+    ],
+    "screenshots": [
+      {
+        "name": "Panel with clock and theme picker",
+        "path": "./img/screenshots/full.png"
+      },
+      {
+        "name": "Light theme panel with clock and theme picker",
+        "path": "./img/screenshots/full-light-theme.png"
+      },
+      {
+        "name": "Creating Astro Theme panel",
+        "path": "./img/screenshots/NewPanelMenu.png"
+      },
+      {
+        "name": "Panel next to themed nav",
+        "path": "./img/screenshots/PanelNextToNav.png"
+      }
+    ],
+    "version": "1.0.0",
+    "updated": "2022-11-08"
+  },
+  "dependencies": {
+    "grafanaDependency": ">=9.0.0",
+    "plugins": []
+  }
+}
