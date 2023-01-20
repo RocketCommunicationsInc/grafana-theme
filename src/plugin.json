@@ -27,19 +27,19 @@
     "screenshots": [
       {
         "name": "Panel with clock and theme picker",
-        "path": "./img/screenshots/full.png"
+        "path": "/img/screenshots/full.png"
       },
       {
         "name": "Light theme panel with clock and theme picker",
-        "path": "./img/screenshots/full-light-theme.png"
+        "path": "/img/screenshots/full-light-theme.png"
       },
       {
         "name": "Creating Astro Theme panel",
-        "path": "./img/screenshots/NewPanelMenu.png"
+        "path": "/img/screenshots/NewPanelMenu.png"
       },
       {
         "name": "Panel next to themed nav",
-        "path": "./img/screenshots/PanelNextToNav.png"
+        "path": "/img/screenshots/PanelNextToNav.png"
       }
     ],
     "version": "1.0.3",

@@ -1,6 +1,6 @@
 ## About This Plugin
 
-This panel plugin is primarly a theme plugin. It provides CSS style overrides for the Grafana dashboard in order to theme the dashboard with [Astro UXDS](www.astrouxds.com) colors and typography. It also provides options for a classification banner, clock, light/dark theme switching, and setting a default theme. Due to Grafana limitations, the Astro plugin _must be visible_ in order to take effect. Navigation inside of the Grafana dashboard will retain the plugin's overrides, but moving away from the dashboard will cause the styles to revert back to Grafana defaults.
+This panel plugin is primarly a theme plugin. It provides CSS style overrides for the Grafana dashboard in order to theme the dashboard with [Astro UXDS](https://www.astrouxds.com) colors and typography. It also provides options for a classification banner, clock, light/dark theme switching, and setting a default theme. Due to Grafana limitations, the Astro plugin _must be visible_ in order to take effect. Navigation inside of the Grafana dashboard will retain the plugin's overrides, but moving away from the dashboard will cause the styles to revert back to Grafana defaults.
 
 ## Panel Options
 
