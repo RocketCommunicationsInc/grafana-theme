@@ -25,7 +25,7 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
     path: 'hideTheme',
     defaultValue: false,
   });
-  builder.addRadio({
+  builder.addSelect({
     path: 'classification',
     name: 'Classification',
     defaultValue: 'unclassified',

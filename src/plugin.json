@@ -11,8 +11,8 @@
     },
     "keywords": ["Theme", "Astro", "UI", "UX", "Space Force"],
     "logos": {
-      "small": "img/logo.svg",
-      "large": "img/logo.svg"
+      "small": "img/astro-logo.svg",
+      "large": "img/astro-logo.svg"
     },
     "links": [
       {
@@ -46,7 +46,7 @@
     "updated": "2022-11-08"
   },
   "dependencies": {
-    "grafanaDependency": ">=9.0.0",
+    "grafanaDependency": "<=9.1.6",
     "plugins": []
   }
 }
