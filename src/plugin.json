@@ -11,8 +11,8 @@
     },
     "keywords": ["Theme", "Astro", "UI", "UX", "Space Force"],
     "logos": {
-      "small": "img/logo.svg",
-      "large": "img/logo.svg"
+      "small": "img/astro-logo.svg",
+      "large": "img/astro-logo.svg"
     },
     "links": [
       {
