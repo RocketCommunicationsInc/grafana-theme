@@ -13,7 +13,7 @@ This panel plugin is primarly a theme plugin. It provides CSS style overrides fo
 - Include Clock
   - Shows or hides the clock.
 - Format
-  - Allows user to choose left, center, or right alignemnt for the panel content.
+  - Allows user to choose left, center, or right alignment for the panel content.
 
 ## MIL-STD 1472 Compliance
 
