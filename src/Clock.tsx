@@ -59,6 +59,7 @@ export const Clock: React.FC<Props> = (props) => {
             alignItems: 'center',
             width: 'fit-content',
             margin: astro.spacing(2),
+            fontFamily: astro.typography.monospace.fontFamily,
             '.date-container': {
               display: 'flex',
               flexDirection: 'column',
