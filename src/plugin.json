@@ -3,6 +3,7 @@
   "type": "panel",
   "name": "Astro Theme",
   "id": "rocketcom-astrotheme-panel",
+  "skipDataQuery": true,
   "info": {
     "description": "An Astro UXDS theme for Grafana dashboards.",
     "author": {
