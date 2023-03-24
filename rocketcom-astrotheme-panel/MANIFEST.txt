@@ -8,32 +8,33 @@ Hash: SHA512
   "signedByOrg": "rocketcom",
   "signedByOrgName": "rocketcom",
   "plugin": "rocketcom-astrotheme-panel",
-  "version": "1.0.5",
-  "time": 1677087140285,
+  "version": "1.0.6",
+  "time": 1679672662094,
   "keyId": "7e4d0c6a708866e7",
   "files": {
     "LICENSE": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
-    "CHANGELOG.md": "aaa78be4710ef41d56ddab1edbd180ef9f9adfea2f293109aae925dc33a1b9b3",
+    "CHANGELOG.md": "f256ab48bd7fcfdfb894e07954a575c83409dc4010ef9763fe1c9f007ed3e918",
     "module.js.LICENSE.txt": "9670f35639dab03d9310276996eed64decadf140dc6b54fe68c35d2e3038a225",
-    "module.js.map": "6d7efb26b14135bfb07ec0c6fcbf01bd861425e0ef5bb65ecf62c616ba7297b3",
-    "plugin.json": "5529eece562f01678d330651128acccf5cc066afc29a0bdbeda7fca3692ac059",
-    "README.md": "94a9a40ea39f06464f9092bc8b7f75f8f691bd05a4df6553a6edaa84e5fafb44",
-    "img/astro-logo.svg": "f6264d44500e6ec7d83a664748dcbeff7b7f8fab7cc443b4e4b11eb064f542d3",
+    "module.js.map": "2562aad38d78a976d47ce0df6e383dfb82f45198a9789df33bb64005290c8de0",
+    "plugin.json": "4d99f6acf347fa1656e122b0cde67c4601e26749a9b7b39c660540b6e1a21180",
+    "README.md": "9e117551aa6384dcf475402b7dc5b6d54ec072b5857ba65158f4d2634eb5a77e",
+    "img/astro-logo.svg": "6b4a44c0e9a816a79fb1849892f20a7cc4b4ea7c470ad14b690e5f8a14e2982c",
     "img/screenshots/NewPanelMenu.png": "92b956c5c66bb76b3ebff8de3aa3c7e0a7b4817882b635988621331ef8974976",
     "img/screenshots/PanelNextToNav.png": "a57db47d9262163b6afbfdb9d697db48659e1d035849d843436a54bf1cb52129",
     "img/screenshots/full-light-theme.png": "8b666be3c079077d998af189b16f5fc99f051f42224b8397196840b134324b77",
     "img/screenshots/full.png": "06d5677860f95ac26e3645a437381f7dcc3916d3d4bde05007e814c04b87851e",
-    "module.js": "db66cf52631481f58ac77f1575cad40dd222b4e5ea5ba4c9b70085de1fc30ff2"
+    "img/astro-logo-small.svg": "d68149326db10bb285e2c8c7bec589eb3d54b80cd41bfa49e00c470542dc1967",
+    "module.js": "c41918003a8906bce760802278db6fa556ec17ff4b7ea2f5b90ef5743114f6aa"
   }
 }
 -----BEGIN PGP SIGNATURE-----
 Version: OpenPGP.js v4.10.10
 Comment: https://openpgpjs.org
 
-wrcEARMKAAYFAmP2UaQAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
-cIhm53d4AgUdVsmcuMbppguXmzD/0ZkWTAnzUcygnFAeLEdggu57588vPTCx
-17j+cZdBPUVrYuw8A1x2viZQuXwt+zb3/ET9OgIFEygzqkvFkj+Rx3wJ5ba1
-NYa5cE8IZxMbAJpAMkPlTYPN2XfImztqqu0GVoyhoICfsHp1MYG9Bez9ODLc
-xY/+LZA=
-=0MLN
+wrgEARMKAAYFAmQdxVYAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm5/h1AgkBlzF58U/X8Q3kJ+gc+7HwJzh9ri+jOJZUPXIlpRKmVmY0MmWZ
+dgAue4oSWFGW4DjWl8Ezt7Fr+SLgpfTcNZpk9AMCCKbZM9suvy1Vtf1F8Y2i
+4D8cIGAjrjQ0m/2DDHEZY5itoRS8rc9mo1WbgpbRiE1Py5vVPRXi+sFQnV5H
+MG50baxP
+=kWAx
 -----END PGP SIGNATURE-----
