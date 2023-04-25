@@ -151,6 +151,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
+          //Target .panel-container in a way that's agnostic of what's in front. ie, .css-ewer33r-panel-container
           '.panel-container': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
@@ -249,6 +250,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
             },
+          },
+          'button[class*="-toolbar-button"]': {
+            background: astro.color.background.surface.default,
+          },
+          '.tooltip-arrow::before': {
+            background: astro.color.background.surface.default,
           },
           //annotation menu
           'div[class*="-input-wrapper"]': {
