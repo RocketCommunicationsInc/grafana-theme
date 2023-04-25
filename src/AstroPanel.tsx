@@ -151,11 +151,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          '.panel-container': {
+          'div[class*="panel-container"]': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          '.panel-title': {
+          'div[class*="panel-title"]': {
             backgroundColor: astro.color.background.surface.header,
             color: astro.color.text.primary,
             h2: {
