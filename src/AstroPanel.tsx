@@ -58,8 +58,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
+          // main content area
+          '.main-view, .css-3kc8b9': {
+            backgroundColor: astro.color.background.base.default,
+          },
           // links
-          'a, a.css-1xmv57m': {
+          'a, a.css-1xmv57m, .css-6pogpz': {
             color: astro.color.text.interactive.default,
             textDecoration: 'none',
             '&:hover': {
@@ -76,12 +80,30 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               backgroundColor: 'none',
             },
           },
+          // search page
+          '.css-13zf4cl': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '[data-testid="data-testid Search section"]': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '[data-testid*="data-testid Dashboard search item"]': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.surface.hover,
+            },
+          },
+          
+
+          // sidenav
           '.sidemenu, [data-testid="sidemenu"]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          '[data-testid="navbarmenu"]': {
-            backgroundColor: astro.color.background.base.default,
+          '.scrollbar-view *': {
             color: astro.color.text.primary,
           },
           '.btn': {
@@ -104,7 +126,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
           //! This is the bar next to the selected icon in the nav. The important override here is the backgroundImage: none;
-          '.css-1uf1299::before, .css-5mvbni::before': {
+          '.css-1uf1299::before, .css-5mvbni::before, .css-78wgv9::before': {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,
           },
@@ -212,6 +234,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           'div[role="dialog"] table tr td': {
             color: astro.color.text.primary,
+          },
+          '[data-testid="navbarmenu"][role="dialog"]': {
+            backgroundColor: astro.color.background.base.default,
           },
 
           //Dashboard Settings Page
