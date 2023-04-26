@@ -58,7 +58,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
-          '.sidemenu': {
+          '.sidemenu, [data-testid="sidemenu"]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
@@ -151,16 +151,19 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          'div[class*="panel-container"]': {
+          '[class*="panel-container"]': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          'div[class*="panel-title"]': {
+          '[class*="panel-title"]': {
             backgroundColor: astro.color.background.surface.header,
             color: astro.color.text.primary,
             h2: {
               ...astro.typography.h4,
             },
+          },
+          '[class*="panel-container--no-title"] [class*="panel-title"]' : {
+            backgroundColor: astro.color.background.surface.default,
           },
           '.dashboard-row': {
             color: astro.color.text.primary,
@@ -171,7 +174,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'nav a': {
             color: astro.color.text.primary,
           },
-          '.page-toolbar': {
+          '[class*=page-toolbar]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
             width: '100%',
@@ -201,11 +204,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
             borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
           },
-          '.toolbar-button': {
+          '[class*=toolbar-button]': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          '.dashboard-settings': {
+          '[class*=dashboard-settings]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
