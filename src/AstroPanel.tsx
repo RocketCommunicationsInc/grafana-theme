@@ -366,6 +366,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               outline: 'none',
             },
           },
+          'button[class*="-toolbar-button"]': {
+            background: astro.color.background.surface.default,
+          },
+          '.tooltip-arrow::before': {
+            background: astro.color.background.surface.default,
+          },
           //annotation menu
           'div[class*="-input-wrapper"]': {
             border: `1px solid ${astro.color.border.interactive.muted}`,
