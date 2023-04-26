@@ -58,6 +58,24 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
+          // links
+          'a, a.css-1xmv57m': {
+            color: astro.color.text.interactive.default,
+            textDecoration: 'none',
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+            },
+          },
+
+          // link button to remove panel
+          '.css-7bxxd7-button': {
+            color: astro.color.text.interactive.default,
+            textDecoration: 'none',
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+              backgroundColor: 'none',
+            },
+          },
           '.sidemenu, [data-testid="sidemenu"]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
@@ -181,9 +199,19 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           // add panel section inner panels
           '.css-11ojjok button': {
             backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
             '&:hover': {
               backgroundColor: astro.color.background.base.hover,
             },
+          },
+
+          //Dialogs
+          'div[role="dialog"]': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          'div[role="dialog"] table tr td': {
+            color: astro.color.text.primary,
           },
 
           //Dashboard Settings Page
