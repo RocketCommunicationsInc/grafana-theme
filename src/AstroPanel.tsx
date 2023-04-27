@@ -58,11 +58,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
-          // main content area
+          /** MAIN CONTENT AREA **/
           '.main-view, .css-3kc8b9': {
             backgroundColor: astro.color.background.base.default,
           },
-          // links
+          
+          /** LINKS **/
           'a, a.css-1xmv57m, .css-6pogpz': {
             color: astro.color.text.interactive.default,
             textDecoration: 'none',
@@ -70,7 +71,6 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               color: astro.color.text.interactive.hover,
             },
           },
-
           // link button to remove panel
           '.css-7bxxd7-button': {
             color: astro.color.text.interactive.default,
@@ -80,7 +80,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               backgroundColor: 'none',
             },
           },
-          // search page
+
+          /** DASHBOARD SEARCH PAGE **/
           '.css-13zf4cl': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
@@ -98,7 +99,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           
 
-          // sidenav
+          /** SIDENAV **/
           '.sidemenu, [data-testid="sidemenu"]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
@@ -112,12 +113,15 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundImage: 'none',
             color: astro.color.text.black,
           },
+          // expand/contract sidenav button
           'button[aria-label="Open navigation menu"], button[aria-label="Close navigation menu"]': {
             backgroundColor: astro.color.background.surface.default,
             ':hover': {
               backgroundColor: astro.color.background.surface.hover,
             },
           },
+
+          /** SVGs **/
           'svg:not(:root)': {
             fill: astro.color.background.interactive.default,
             ':hover': {
@@ -130,7 +134,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,
           },
-          //timepicker details
+
+          // timepicker details
           '#TimePickerContent': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
@@ -193,10 +198,15 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'div[data-testid="dropdown-child-divider"]': {
             borderBottom: '1px solid #51555b',
           },
-          //dashboard and panels
+
+          /**  DASHBOARD AND PANEL VIEW **/
           header: {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
+          },
+           //Backround for dashboards
+           body: {
+            background: astro.color.background.base.default,
           },
           '[class*="panel-container"]': {
             backgroundColor: astro.color.background.surface.default,
@@ -209,6 +219,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               ...astro.typography.h4,
             },
           },
+          // override so no header color shows when there is no title on a panel
           '[class*="panel-container--no-title"] [class*="panel-title"]': {
             backgroundColor: astro.color.background.surface.default,
           },
@@ -227,19 +238,98 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
           },
 
-          //Dialogs
+          /** EDIT PANEL SECTION **/
+          // top pane on edit panel sidenav
+          '.css-1jel17l': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          //main panel section on sidenav
+          '.css-1xappwv, .css-v2fjpc, .css-1f0zkg6': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          //interior panels
+          '.css-8vkw8w': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+          //pane header hover
+          '[data-testid="options-category"] > div:first-child': {
+              '&:hover': {
+                backgroundColor: astro.color.background.surface.hover,
+              },
+          },
+          // segmented button at top of edit sidenav
+          '.css-1tpfx0m': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: '0px',
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            },
+          },
+          //segmented button selected
+          '.css-8hl977:checked + label': {
+            backgroundColor: astro.color.background.surface.selected,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.surface.hover,
+              color: astro.color.text.primary,
+            },
+          },
+          // segmented button border
+          '.css-sv3u8u': {
+            border: 'none',
+            '&:hover': {
+              border: 'none',
+            },
+          },
+          // Suggestions section
+          '.css-3urai6 button': {
+            backgroundColor: astro.color.background.base.default,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+
+          /** DIALOGS **/
           'div[role="dialog"]': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
+          // dialog table rows
           'div[role="dialog"] table tr td': {
             color: astro.color.text.primary,
           },
+          // specific background coloring for dashboard sidenav (it is technically a dialog)
           '[data-testid="navbarmenu"][role="dialog"]': {
             backgroundColor: astro.color.background.base.default,
           },
+          // dialog cancel button
+          'button.css-jyng06-button': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.interactive.default,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            },
+            svg: {
+              fill: astro.color.text.black,
+            },
+          },
 
-          //Dashboard Settings Page
+          /** DASHBOARD SETTINGS PAGE **/
           // Main section
           '[class*="page-inner"]': {
             backgroundColor: astro.color.background.surface.default,
@@ -273,7 +363,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             color: astro.color.text.primary,
             width: '100%',
             },
-          // Dashboard top nav save buttons
+          // Dashboard top nav save button secondary
           '.css-b2ba3d-button': {
             backgroundColor: astro.color.background.base.default,
             border: `1px solid ${astro.color.border.interactive.default}`,
@@ -290,6 +380,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               fill: astro.color.text.black,
             },
           },
+           // Dashboard top nav save button primary
           '.css-z53gi5-button': {
             backgroundColor: astro.color.background.interactive.default,
             borderRadius: astro.radius.base,
@@ -304,10 +395,19 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               fill: astro.color.text.black,
             },
           },
-          //info tootip on panels
+          // panels inside settings choices
+          '[class$="call-to-action-card"]': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          // box inside panels
+          '[class*="grafana-info-box"]': {
+            backgroundColor: astro.color.background.surface.default,
+          },
+
+          /**  INFO TOOLTIP **/
           '[class*=panel-info-corner--info] [class*=panel-info-corner-inner]': {
             backgroundColor: astro.color.background.surface.default,
-            borderLeft: `32px solid ${astro.color.background.surface.header}`,
+            borderLeft: `none`,
           },
           '[class*=panel-info-corner] .fa': {
             color: astro.color.text.interactive.default,
@@ -327,12 +427,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             content: '',
             backgroundColor: '#ffffff',
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::before': {
-            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          // tooltip arrow display none
+          '.css-7dcs73[data-popper-placement*="bottom"] .tooltip-arrow, .css-7dcs73[data-popper-placement*="top"] .tooltip-arrow ': {
+            display: 'none',
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
-            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
-          },
+
+          /** TOP NAV BUTTONS **/
           '[class*=toolbar-button]': {
             backgroundColor: astro.color.background.base.default,
             border: `1px solid ${astro.color.border.interactive.default}`,
@@ -358,7 +458,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          //Annotation on a graph
+
+          /** ANNOTATION ON A GRAPH **/
           'div[data-popper-reference-hidden="false"]': {
             background: astro.color.background.surface.default,
           },
@@ -374,11 +475,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               borderColor: astro.color.border.interactive.hover,
             },
           },
-          //Backround for dashboards
-          body: {
-            background: astro.color.background.base.default,
-          },
-          'input[class$="-input-input"]': {
+
+          /** INPUTS AND TEXTAREAS **/
+          'input[class$="-input-input"], textarea, textarea.css-p9crc5': {
             // boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
             border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
@@ -390,26 +489,25 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
             },
-          },
-          'button[class*="-toolbar-button"]': {
-            background: astro.color.background.surface.default,
-          },
-          '.tooltip-arrow::before': {
-            background: astro.color.background.surface.default,
+            '::placeholder': {
+              color: astro.color.text.placeholder,
+            },
           },
           //annotation menu
           'div[class*="-input-wrapper"]': {
-            border: `1px solid ${astro.color.border.interactive.muted}`,
+            // border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
             ...astro.typography.body1,
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.base.default,
             ':hover': {
               // boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
-              border: `1px solid ${astro.color.border.interactive.hover}`,
+              //border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
             },
           },
+
+          /** BUTTONS **/
           'div[class$="layoutChildrenWrapper"] button, [class$="call-to-action-card"] button, [class*="page-content"] button': {
             backgroundColor: astro.color.background.interactive.default,
             borderRadius: astro.radius.base,
@@ -422,6 +520,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
             svg: {
               fill: astro.color.text.black,
+              
             },
           },
           '[class*="page-content"] button[id*="collapse-button"]': {
@@ -433,13 +532,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               fill: astro.color.text.interactive.default,
             },
           },
-          '[class$="call-to-action-card"]': {
-            backgroundColor: astro.color.background.base.default,
-          },
-          '[class*="grafana-info-box"]': {
-            backgroundColor: astro.color.background.surface.default,
-          },
-          //tables
+
+          /** TABLES **/
           '.filter-table tbody tr:nth-child(odd)': {
             backgroundColor: astro.color.background.base.default,
           },
@@ -473,6 +567,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               color: astro.color.text.primary,
             },
           },
+
+          /** CHECKBOXES **/
           // checkbox
           'input[type="checkbox"] + span, input[type="checkbox"]:checked + span': {
             backgroundColor: 'transparent',
@@ -501,7 +597,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'table tbody tr td label, table tbody tr td label div': {
             display: 'flex',
           },
-          //Astro Panel CSS
+
+          /** ASTRO PANEL CSS **/
           //theme switch button
           '.astro-btn': {
             height: '28px',
