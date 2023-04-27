@@ -60,6 +60,7 @@ export const Clock: React.FC<Props> = (props) => {
             width: 'fit-content',
             margin: astro.spacing(2),
             fontFamily: astro.typography.monospace.fontFamily,
+            fontVariantNumeric: 'tabular-nums',
             '.date-container': {
               display: 'flex',
               flexDirection: 'column',
