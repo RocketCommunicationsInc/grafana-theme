@@ -520,7 +520,10 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
             svg: {
               fill: astro.color.text.black,
-              
+              '&:hover': {
+                fill: astro.color.text.black,
+              },
+
             },
           },
           '[class*="page-content"] button[id*="collapse-button"]': {
