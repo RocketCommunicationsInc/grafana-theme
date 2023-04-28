@@ -58,8 +58,53 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
-          '.sidemenu': {
+          /** MAIN CONTENT AREA **/
+          '.main-view, .css-3kc8b9': {
             backgroundColor: astro.color.background.base.default,
+          },
+          
+          /** LINKS **/
+          'a, a.css-1xmv57m, .css-6pogpz': {
+            color: astro.color.text.interactive.default,
+            textDecoration: 'none',
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+            },
+          },
+          // link button to remove panel
+          '.css-7bxxd7-button': {
+            color: astro.color.text.interactive.default,
+            textDecoration: 'none',
+            '&:hover': {
+              color: astro.color.text.interactive.hover,
+              backgroundColor: 'none',
+            },
+          },
+
+          /** DASHBOARD SEARCH PAGE **/
+          '.css-13zf4cl': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          '[data-testid="data-testid Search section"]': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '[data-testid*="data-testid Dashboard search item"]': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.surface.hover,
+            },
+          },
+          
+
+          /** SIDENAV **/
+          '.sidemenu, [data-testid="sidemenu"]': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '.scrollbar-view *': {
             color: astro.color.text.primary,
           },
           '.btn': {
@@ -68,22 +113,29 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             backgroundImage: 'none',
             color: astro.color.text.black,
           },
-          'button[aria-label="Open navigation menu"]': {
+          // expand/contract sidenav button
+          'button[aria-label="Open navigation menu"], button[aria-label="Close navigation menu"]': {
             backgroundColor: astro.color.background.surface.default,
             ':hover': {
               backgroundColor: astro.color.background.surface.hover,
             },
           },
+
+          /** SVGs **/
           'svg:not(:root)': {
             fill: astro.color.background.interactive.default,
+            ':hover': {
+              fill: astro.color.background.interactive.hover,
+            }
           },
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
           //! This is the bar next to the selected icon in the nav. The important override here is the backgroundImage: none;
-          '.css-1uf1299::before': {
+          '.css-1uf1299::before, .css-5mvbni::before, .css-78wgv9::before': {
             backgroundImage: 'none',
             backgroundColor: astro.color.background.interactive.default,
           },
-          //timepicker details
+
+          // timepicker details
           '#TimePickerContent': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
@@ -96,7 +148,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                 cursor: 'pointer',
               },
               svg: {
-                fill: 'black',
+                fill: astro.color.text.interactive.default,
               },
             },
           },
@@ -146,79 +198,268 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'div[data-testid="dropdown-child-divider"]': {
             borderBottom: '1px solid #51555b',
           },
-          //dashboard and panels
+
+          /**  DASHBOARD AND PANEL VIEW **/
           header: {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          //Target .panel-container in a way that's agnostic of what's in front. ie, .css-ewer33r-panel-container
-          '.panel-container': {
+           //Backround for dashboards
+           body: {
+            background: astro.color.background.base.default,
+          },
+          '[class*="panel-container"]': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          '.panel-title': {
+          '[class*="panel-title"]': {
             backgroundColor: astro.color.background.surface.header,
             color: astro.color.text.primary,
             h2: {
               ...astro.typography.h4,
             },
           },
-          '.dashboard-row': {
+          // override so no header color shows when there is no title on a panel
+          '[class*="panel-container--no-title"] [class*="panel-title"]': {
+            backgroundColor: astro.color.background.surface.default,
+          },
+          // add panel header section
+          '.grid-drag-handle': {
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+          // add panel section inner panels
+          '.css-11ojjok button': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+
+          /** EDIT PANEL SECTION **/
+          // top pane on edit panel sidenav
+          '.css-1jel17l': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          //main panel section on sidenav
+          '.css-1xappwv, .css-v2fjpc, .css-1f0zkg6': {
+            backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          '.dashboard-row__title': {
+          //interior panels
+          '.css-8vkw8w': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+          //pane header hover
+          '[data-testid="options-category"] > div:first-child': {
+              '&:hover': {
+                backgroundColor: astro.color.background.surface.hover,
+              },
+          },
+          // segmented button at top of edit sidenav
+          '.css-1tpfx0m': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: '0px',
+            color: astro.color.text.interactive.default,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            },
+          },
+          //segmented button selected
+          '.css-8hl977:checked + label': {
+            backgroundColor: astro.color.background.surface.selected,
+            color: astro.color.text.primary,
+            '&:hover': {
+              backgroundColor: astro.color.background.surface.hover,
+              color: astro.color.text.primary,
+            },
+          },
+          // segmented button border
+          '.css-sv3u8u': {
+            border: 'none',
+            '&:hover': {
+              border: 'none',
+            },
+          },
+          // Suggestions section
+          '.css-3urai6 button': {
+            backgroundColor: astro.color.background.base.default,
+            '&:hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+
+          /** DIALOGS **/
+          'div[role="dialog"]': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          // dialog table rows
+          'div[role="dialog"] table tr td': {
+            color: astro.color.text.primary,
+          },
+          // specific background coloring for dashboard sidenav (it is technically a dialog)
+          '[data-testid="navbarmenu"][role="dialog"]': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          // dialog cancel button
+          'button.css-jyng06-button': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.interactive.default,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            },
+            svg: {
+              fill: astro.color.text.black,
+            },
+          },
+
+          /** DASHBOARD SETTINGS PAGE **/
+          // Main section
+          '[class*="page-inner"]': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          // Sidenav background
+          '[class*="page-panes"] nav': {
+            backgroundColor: astro.color.background.surface.default,
+            color: astro.color.text.primary,
+          },
+          // Dashboard sidenav selected background
+          '[class*="scrollbar-view"] div[role="tablist"] [class*="-activeTabStyle"]': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          // Dashboard sidenav selected line
+          '[class*="scrollbar-view"] div[role="tablist"] [class*="-activeTabStyle"]::before': {
+            backgroundImage: 'none',
+            backgroundColor: astro.color.background.interactive.default,
+          },
+          '[class*=dashboard-row]': {
+            color: astro.color.text.primary,
+          },
+          '[class*=dashboard-row__title]': {
             color: astro.color.text.primary,
           },
           'nav a': {
             color: astro.color.text.primary,
           },
-          '.page-toolbar': {
+          '[class*=page-toolbar]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
             width: '100%',
+            },
+          // Dashboard top nav save button secondary
+          '.css-b2ba3d-button': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.interactive.default,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            },
+            svg: {
+              fill: astro.color.text.black,
+            },
           },
-          //info tootip on panels
-          '.panel-info-corner--info .panel-info-corner-inner': {
+           // Dashboard top nav save button primary
+          '.css-z53gi5-button': {
+            backgroundColor: astro.color.background.interactive.default,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.inverse,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.interactive.hover,
+              color: astro.color.text.inverse,
+            },
+            svg: {
+              fill: astro.color.text.black,
+            },
+          },
+          // panels inside settings choices
+          '[class$="call-to-action-card"]': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          // box inside panels
+          '[class*="grafana-info-box"]': {
             backgroundColor: astro.color.background.surface.default,
-            borderLeft: `32px solid ${astro.color.background.surface.header}`,
           },
-          '.panel-info-corner .fa': {
+
+          /**  INFO TOOLTIP **/
+          '[class*=panel-info-corner--info] [class*=panel-info-corner-inner]': {
+            backgroundColor: astro.color.background.surface.default,
+            borderLeft: `none`,
+          },
+          '[class*=panel-info-corner] .fa': {
             color: astro.color.text.interactive.default,
           },
-          '.grafana-portal-container': {
+          '[class*=grafana-portal-container]': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
             border: `1px solid ${astro.color.border.interactive}`,
           },
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
           '.css-7dcs73': {
-            background: astro.color.background.base.default,
-            border: `1px solid ${astro.color.border.interactive.muted}`,
+            backgroundColor: astro.palette.grey[800],
+            border: `1px solid transparent`,
             color: astro.color.text.primary,
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::before': {
-            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          '.css-7dcs73::before, .css-7dcs73::after,': {
+            content: '',
+            backgroundColor: '#ffffff',
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
-            borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
+          // tooltip arrow display none
+          '.css-7dcs73[data-popper-placement*="bottom"] .tooltip-arrow, .css-7dcs73[data-popper-placement*="top"] .tooltip-arrow ': {
+            display: 'none',
           },
-          '.toolbar-button': {
-            background: astro.color.background.surface.default,
-            color: astro.color.text.primary,
+
+          /** TOP NAV BUTTONS **/
+          '[class*=toolbar-button]': {
+            backgroundColor: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.interactive.default,
+            ...astro.typography.body1,
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.base.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+              color: astro.color.text.interactive.hover,
+            }
           },
-          '.dashboard-settings': {
+          '[class*=dashboard-settings]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          '.dashboard-settings__aside': {
+          '[class*=dashboard-settings__aside]': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
           },
-          '.dashboard-settings__aside + div': {
+          '[class*=dashboard-settings__aside] + div': {
             backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
-          //Annotation on a graph
+
+          /** ANNOTATION ON A GRAPH **/
           'div[data-popper-reference-hidden="false"]': {
             background: astro.color.background.surface.default,
           },
@@ -234,11 +475,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               borderColor: astro.color.border.interactive.hover,
             },
           },
-          //Backround for dashboards
-          body: {
-            background: astro.color.background.base.default,
-          },
-          'input[class$="-input-input"]': {
+
+          /** INPUTS AND TEXTAREAS **/
+          'input[class$="-input-input"], textarea, textarea.css-p9crc5': {
             // boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
             border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
@@ -250,27 +489,26 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
             },
-          },
-          'button[class*="-toolbar-button"]': {
-            background: astro.color.background.surface.default,
-          },
-          '.tooltip-arrow::before': {
-            background: astro.color.background.surface.default,
+            '::placeholder': {
+              color: astro.color.text.placeholder,
+            },
           },
           //annotation menu
           'div[class*="-input-wrapper"]': {
-            border: `1px solid ${astro.color.border.interactive.muted}`,
+            // border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
             ...astro.typography.body1,
             color: astro.color.text.primary,
             backgroundColor: astro.color.background.base.default,
             ':hover': {
               // boxShadow: `${astro.color.border.interactive.hover} 0 0 0 1px inset`,
-              border: `1px solid ${astro.color.border.interactive.hover}`,
+              //border: `1px solid ${astro.color.border.interactive.hover}`,
               outline: 'none',
             },
           },
-          'div[class$="layoutChildrenWrapper"] button': {
+
+          /** BUTTONS **/
+          'div[class$="layoutChildrenWrapper"] button, [class$="call-to-action-card"] button, [class*="page-content"] button': {
             backgroundColor: astro.color.background.interactive.default,
             borderRadius: astro.radius.base,
             color: astro.color.text.inverse,
@@ -282,9 +520,26 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
             svg: {
               fill: astro.color.text.black,
+              '&:hover': {
+                fill: astro.color.text.black,
+              },
+
             },
           },
-          //tables
+          '[class*="page-content"] button[id*="collapse-button"]': {
+            backgroundColor: 'transparent',
+            ':hover': {
+              backgroundColor: 'transparent',
+            },
+            svg: {
+              fill: astro.color.text.interactive.default,
+            },
+          },
+
+          /** TABLES **/
+          '.filter-table tbody tr:nth-child(odd)': {
+            backgroundColor: astro.color.background.base.default,
+          },
           'div[role=row]': {
             color: astro.color.text.primary,
             borderColor: astro.color.background.base.default,
@@ -303,6 +558,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               background: astro.color.background.surface.hover,
             },
           },
+          'td[role="gridcell"]' : {
+            backgroundColor: astro.color.background.base.default,
+          },
           'div[role=columnheader]': {
             borderColor: astro.color.background.base.default,
             background: astro.color.background.surface.default,
@@ -312,7 +570,38 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               color: astro.color.text.primary,
             },
           },
-          //Astro Panel CSS
+
+          /** CHECKBOXES **/
+          // checkbox
+          'input[type="checkbox"] + span, input[type="checkbox"]:checked + span': {
+            backgroundColor: 'transparent',
+            borderColor: astro.color.border.interactive.default,
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            ':hover': {
+              backgroundColor: 'transparent',
+              borderColor: astro.color.border.interactive.hover,
+            },
+          },
+          // Checkmark
+          'input[type="checkbox"]:checked + span::after': {
+            backgroundColor: 'transparent',
+            borderColor: astro.color.border.interactive.default,
+            left: '5px',
+            top: '0px',
+            width: '5px',
+            borderWidth: '0px 2px 2px 0px',
+            ':hover': {
+              backgroundColor: 'transparent',
+              borderColor: astro.color.border.interactive.hover,
+            },
+          },
+          // Centering checkbox in table row
+          'table tbody tr td label, table tbody tr td label div': {
+            display: 'flex',
+          },
+
+          /** ASTRO PANEL CSS **/
           //theme switch button
           '.astro-btn': {
             height: '28px',
