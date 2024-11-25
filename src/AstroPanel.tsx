@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { PanelProps } from '@grafana/data';
+import { Mode, useAstroTokens } from 'use-astro-tokens';
+import React, { useEffect, useState } from 'react';
+
 import { AstroOptions } from 'types';
-import { Global } from '@emotion/react';
-import { useAstroTokens, Mode } from 'use-astro-tokens';
 import { Clock } from './Clock';
+import { Global } from '@emotion/react';
+import { PanelProps } from '@grafana/data';
 
 interface Props extends PanelProps<AstroOptions> {}
 
@@ -58,6 +59,30 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
       <Global
         //@ts-ignore
         styles={{
+          '[class$="-page-wrapper"]': {
+            backgroundColor: astro.color.background.base.default,
+          },
+          '.main-view > div': {
+            backgroundColor: astro.color.background.surface.header,
+            //? This targets the nave toolbar directly below the search bar. Do we want this to be a diff color?
+            // '[data-testid="data-testid Nav toolbar"]': {
+            //   backgroundColor: astro.color.background.surface.default,
+            // },
+          },
+          'a[role="option"] > div::before': {
+            ':hover': {
+              backgroundColor: astro.color.background.interactive.hover,
+            },
+          },
+          //TODO: Update to not target this auto-gen class
+          '.css-h0bvvy': {
+            backgroundColor: astro.color.background.surface.selected,
+          },
+          //TODO: Update to not target this auto-gen class
+          '.css-h0bvvy::before': {
+            backgroundColor: astro.color.background.interactive.hover,
+            backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
+          },
           '.sidemenu': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
@@ -77,6 +102,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'svg:not(:root)': {
             fill: astro.color.background.interactive.default,
           },
+          //TODO: Update to not target this auto-gen class
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
           //! This is the bar next to the selected icon in the nav. The important override here is the backgroundImage: none;
           '.css-1uf1299::before': {
@@ -110,6 +136,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           'button[aria-checked="true"]': {
             background: astro.color.background.surface.selected,
+          },
+          //add menu
+          'div[role="menu"]': {
+            background: astro.color.background.surface.default,
+            color: astro.color.text.interactive.default,
+            border: `1px solid ${astro.palette.brightblue[700]}`,
           },
           //pop up menus from hovering icons in nav
           'ul[role="menu"]': {
@@ -149,6 +181,10 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //dashboard and panels
           header: {
             backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+          },
+          '[class$="-panel-container"]': {
+            backgroundColor: astro.color.background.surface.default,
             color: astro.color.text.primary,
           },
           //Target .panel-container in a way that's agnostic of what's in front. ie, .css-ewer33r-panel-container
@@ -191,6 +227,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             border: `1px solid ${astro.color.border.interactive}`,
           },
           //! Targets an auto-generated Emotion class. This classname may change in future builds.
+          //TODO: Update to not target this auto-gen class
           '.css-7dcs73': {
             background: astro.color.background.base.default,
             border: `1px solid ${astro.color.border.interactive.muted}`,
@@ -219,12 +256,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             color: astro.color.text.primary,
           },
           //Annotation on a graph
-          'div[data-popper-reference-hidden="false"]': {
-            background: astro.color.background.surface.default,
-          },
-          'div[data-popper-reference-hidden="false"] > :first-child': {
-            background: astro.color.background.surface.header,
-          },
+          // 'div[data-popper-reference-hidden="false"]': {
+          //   background: astro.color.background.surface.default,
+          // },
+          // 'div[data-popper-reference-hidden="false"] > :first-child': {
+          //   background: astro.color.background.surface.header,
+          // },
           'form div textarea[class^="css-"]': {
             ...astro.typography.body1,
             background: astro.color.background.base.default,
@@ -254,9 +291,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'button[class*="-toolbar-button"]': {
             background: astro.color.background.surface.default,
           },
-          '.tooltip-arrow::before': {
-            background: astro.color.background.surface.default,
-          },
+          // '.tooltip-arrow::before': {
+          //   background: astro.color.background.surface.default,
+          // },
           //annotation menu
           'div[class*="-input-wrapper"]': {
             border: `1px solid ${astro.color.border.interactive.muted}`,
@@ -416,6 +453,27 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
           },
+          // dialog
+          '[role="dialog"]': {
+            backgroundColor: astro.color.background.surface.default,
+            '[class$="-modalHeader"]': {
+              backgroundColor: astro.color.background.surface.header,
+              width: '100%',
+              padding: astro.spacing(4),
+              margin: 0,
+            },
+            //dialog buttons - secondary for all but last button
+            '[class$="-horizontal-group"] [class$="-layoutChildrenWrapper"]:not(:last-child) button': {
+              backgroundColor: 'transparent',
+              border: `1px solid ${astro.color.border.interactive.default}`,
+              color: astro.color.text.interactive.default,
+              ':hover': {
+                color: astro.color.text.interactive.hover,
+                border: `1px solid ${astro.color.border.interactive.hover}`,
+              },
+            },
+          },
+          //menu
         }}
       />
     </div>
