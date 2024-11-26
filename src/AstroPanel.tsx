@@ -74,17 +74,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               backgroundColor: astro.color.background.interactive.hover,
             },
           },
-          //TODO: Update to not target this auto-gen class
           'a[role="option"][aria-selected="true"] > div': {
             backgroundColor: astro.color.background.surface.selected,
             '::before': {
               backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
             },
           },
-          //TODO: Update to not target this auto-gen class
-          // '.css-h0bvvy::before': {
-          // backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
-          // },
           '.sidemenu': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
@@ -257,11 +252,17 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
             borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
           },
-          '[class$=-toolbar-button]': {
+          'button[class$="-toolbar-button"]': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
+            borderRadius: astro.radius.base,
+            ':not(:last-child)': {
+              borderRightWidth: '1px',
+            },
             ':hover': {
               border: `1px solid ${astro.color.background.interactive.hover}`,
+              background: astro.color.background.surface.default,
+
               'div > svg': {
                 fill: astro.color.background.interactive.hover,
               },
