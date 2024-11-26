@@ -75,14 +75,16 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
           },
           //TODO: Update to not target this auto-gen class
-          '.css-h0bvvy': {
+          'a[role="option"][aria-selected="true"] > div': {
             backgroundColor: astro.color.background.surface.selected,
+            '::before': {
+              backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
+            },
           },
           //TODO: Update to not target this auto-gen class
-          '.css-h0bvvy::before': {
-            backgroundColor: astro.color.background.interactive.hover,
-            backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
-          },
+          // '.css-h0bvvy::before': {
+          // backgroundImage: `linear-gradient(0.01deg, ${astro.color.background.interactive.default} 0.01%, ${astro.color.background.interactive.default} 99.99%)`,
+          // },
           '.sidemenu': {
             backgroundColor: astro.color.background.base.default,
             color: astro.color.text.primary,
@@ -142,6 +144,22 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             background: astro.color.background.surface.default,
             color: astro.color.text.interactive.default,
             border: `1px solid ${astro.palette.brightblue[700]}`,
+          },
+          //add menu buttons
+          'button[role="menuitem"]': {
+            color: astro.color.text.interactive.default,
+            ':hover:not([disabled])': {
+              backgroundColor: astro.color.background.base.hover,
+              color: astro.color.text.interactive.hover,
+            },
+            ':disabled': {
+              opacity: '0.4',
+              cursor: 'not-allowed',
+              ':hover': {
+                color: astro.color.text.interactive.default,
+                background: astro.color.background.surface.default,
+              },
+            },
           },
           //pop up menus from hovering icons in nav
           'ul[role="menu"]': {
@@ -239,9 +257,15 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
             borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
           },
-          '.toolbar-button': {
+          '[class$=-toolbar-button]': {
             background: astro.color.background.surface.default,
             color: astro.color.text.primary,
+            ':hover': {
+              border: `1px solid ${astro.color.background.interactive.hover}`,
+              'div > svg': {
+                fill: astro.color.background.interactive.hover,
+              },
+            },
           },
           '.dashboard-settings': {
             backgroundColor: astro.color.background.base.default,
