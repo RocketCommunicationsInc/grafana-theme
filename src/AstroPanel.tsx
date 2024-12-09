@@ -661,12 +661,18 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               backgroundColor: astro.color.background.interactive.hover,
               color: astro.color.text.inverse,
             },
+            svg: {
+              fill: 'black',
+            },
           },
           //override "Delete Dashboard" button to not look like a reg button
           'div[class$="-page-content"] button[class$="-button"][aria-label="Dashboard settings page delete dashboard button"]':
             {
               background: astro.color.status.critical,
               color: astro.color.text.white,
+              ':hover': {
+                background: astro.palette.red[400],
+              },
             },
           //upper right buttons
           'button[data-testid="data-testid dashboard-settings-close"]': {
@@ -721,9 +727,76 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
           },
+          //* Annotations page inside Settings page
+          '.filter-table button': {
+            em: {
+              color: astro.color.text.black,
+            },
+            thead: {
+              background: astro.palette.darkblue[900],
+            },
+            tr: {
+              background: astro.palette.darkblue[800],
+            },
+          },
+          '.filter-table': {
+            borderCollapse: 'collapse',
+            tbody: {
+              thead: {
+                background: astro.palette.darkblue[900],
+              },
+              tr: {
+                background: astro.palette.darkblue[800],
+                borderBottom: '1px solid black',
+                ':nth-child(odd)': {
+                  borderBottom: '1px solid black',
+                  background: astro.palette.darkblue[800],
+                },
+                ':hover': {
+                  background: astro.palette.brightblue[800],
+                },
+              },
+            },
+          },
           //main page
           'div[class$="-page-inner"]': {
             background: astro.color.background.surface.default,
+            'div[class$="-call-to-action-card"]': {
+              background: astro.palette.darkblue[800],
+              svg: {
+                fill: 'black',
+              },
+            },
+          },
+          h1: {
+            color: astro.color.text.white,
+            ...astro.typography.h1,
+          },
+          'input[type="checkbox"] + span': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            padding: '8px',
+            ':hover': {
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+            },
+          },
+          'input[type="checkbox"]:checked + span': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            padding: '8px',
+            ':hover': {
+              background: astro.color.background.base.default,
+              borderColor: astro.color.border.interactive.hover,
+            },
+            ':after': {
+              borderColor: astro.color.background.interactive.default,
+              borderWidth: '0px 2px 2px 0px',
+            },
+          },
+          'input[type="checkbox"]:disabled + span': {
+            background: astro.color.background.base.default,
+            opacity: 0.4,
+            cursor: 'not-allowed',
           },
         }}
       />
