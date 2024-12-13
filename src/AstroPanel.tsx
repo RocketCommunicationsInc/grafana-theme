@@ -34,7 +34,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
     topSecretSCI: 'TOP SECRET//SCI',
   };
   return (
-    <div className={`astro-panel-container astro-panel-container--${options.format}`}>
+    <div
+      className={`astro-panel-container astro-panel-container--${options.format} ${
+        options.hidePanel ? 'hide-astro-panel' : ''
+      }`}
+    >
       {options.classification ? (
         <div className={'class-banner class-' + options.classification}>
           {classificationMap[options.classification]}
@@ -270,10 +274,10 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             border: `1px solid ${astro.color.border.interactive.muted}`,
             color: astro.color.text.primary,
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::before': {
+          '.div[data-popper-placement*="top"] .tooltip-arrow::before': {
             borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
           },
-          '.css-7dcs73[data-popper-placement*="top"] .tooltip-arrow::after': {
+          'div[data-popper-placement*="top"] .tooltip-arrow::after': {
             borderColor: `${astro.color.border.interactive.muted} transparent transparent`,
           },
           'button[class$="-toolbar-button"]': {
@@ -291,8 +295,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //TimePicker button
           'button[class$="-toolbar-button"][aria-controls="TimePickerContent"]': {
             color: astro.color.text.interactive.default,
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
             ':hover': {
               color: astro.color.text.interactive.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
             },
           },
           '.dashboard-settings': {
@@ -393,7 +400,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               color: astro.color.text.primary,
             },
           },
-          //Astro Panel CSS
+          //* Astro Panel CSS
+          //Attempts at hiding Astro panel entriely but keeping the theme alive
+          'div[class$="-panel-container"]:has(.hide-astro-panel)': {
+            display: 'none',
+          },
           //theme switch button
           '.astro-btn': {
             height: '28px',
@@ -516,19 +527,78 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                 border: `1px solid ${astro.color.border.interactive.hover}`,
               },
             },
-            'button[aria-label="Dashboard settings aside actions Save button"]': {
+            '[class$="-horizontal-group"] [class$="-layoutChildrenWrapper"]:last-child button': {
+              //reg styling
               backgroundColor: astro.color.background.interactive.default,
               borderRadius: astro.radius.base,
               color: astro.color.text.inverse,
-              ...astro.typography.body1,
+              ':disabled': {
+                opacity: '0.4',
+                cursor: 'not-allowed',
+                ':hover': {
+                  background: astro.color.background.interactive.default,
+                },
+              },
               ':hover': {
                 borderColor: 'transparent',
                 backgroundColor: astro.color.background.interactive.hover,
                 color: astro.color.text.inverse,
               },
+              svg: {
+                fill: 'black',
+              },
             },
+            'button[aria-label="Dashboard settings aside actions Save button"], button[aria-label="Confirm Modal Danger Button"]':
+              {
+                backgroundColor: astro.color.background.interactive.default,
+                borderRadius: astro.radius.base,
+                color: astro.color.text.inverse,
+                ...astro.typography.body1,
+                ':hover': {
+                  borderColor: 'transparent',
+                  backgroundColor: astro.color.background.interactive.hover,
+                  color: astro.color.text.inverse,
+                },
+              },
           },
           //*edit panel view. ie, add panel
+          // Discard, save and apply buttons in top right
+          'button[title="Undo all changes"]': {
+            //seconday styling, red border
+            backgroundColor: 'transparent',
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            color: astro.color.text.interactive.default,
+            ':hover': {
+              color: astro.color.text.interactive.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+            },
+          },
+          'button[title="Apply changes and save dashboard"]': {
+            backgroundColor: 'transparent',
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            color: astro.color.text.interactive.default,
+            ':hover': {
+              color: astro.color.text.interactive.hover,
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+            },
+          },
+          'button[title="Apply changes and go back to dashboard"]': {
+            backgroundColor: astro.color.background.interactive.default,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.inverse,
+            ':disabled': {
+              opacity: '0.4',
+              cursor: 'not-allowed',
+              ':hover': {
+                background: astro.color.background.interactive.default,
+              },
+            },
+            ':hover': {
+              borderColor: 'transparent',
+              backgroundColor: astro.color.background.interactive.hover,
+              color: astro.color.text.inverse,
+            },
+          },
           //toolbar, ie Table View radio, fill/actual seg button
           'div.Pane.horizontal': {
             '[class$="-horizontal-group"] [class$="-layoutChildrenWrapper"]': {
@@ -553,9 +623,35 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               '> div': {
                 backgroundColor: astro.color.background.surface.default,
               },
+              'button[data-testid*="suggestion"]': {
+                border: `1px solid ${astro.color.border.interactive.default}`,
+                background: astro.color.background.base.default,
+                ':hover': {
+                  border: `1px solid ${astro.color.border.interactive.hover}`,
+                  background: astro.color.background.base.hover,
+                },
+              },
             },
             'input[class$="-input-input"]': {
               border: 'none',
+            },
+          },
+          //attempt at getting new panel selection drop down
+          'div:has(> [class$="currentVisualizationItem"])': {
+            background: astro.color.background.surface.default,
+            '[aria-label]': {
+              background: astro.color.background.base.default,
+              ':hover': {
+                background: astro.color.background.base.hover,
+                cursor: 'pointer',
+                border: `1px solid ${astro.color.border.interactive.hover}`,
+              },
+            },
+            '> [class$="currentVisualizationItem"]': {
+              border: `1px solid ${astro.color.border.interactive.default}`,
+              ':hover': {
+                border: `1px solid ${astro.color.border.interactive.hover}`,
+              },
             },
           },
           //* panel editor data pane
@@ -644,6 +740,17 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           //* Settings Page
           //most all other buttons that can't be targeted nicely
+          'div[class$="-page-content"] button[class$="-button"][aria-label="Dashboard settings page delete dashboard button"]':
+            {
+              background: astro.color.status.critical,
+              border: `1px solid ${astro.palette.red[700]}`,
+              color: astro.color.text.white,
+              ':hover': {
+                color: astro.color.text.white,
+                background: astro.palette.red[400],
+                border: `1px solid ${astro.color.status.critical}`,
+              },
+            },
           'div[class$="-page-content"] button[class$="-button"]': {
             //reg styling
             backgroundColor: astro.color.background.interactive.default,
@@ -665,15 +772,6 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               fill: 'black',
             },
           },
-          //override "Delete Dashboard" button to not look like a reg button
-          'div[class$="-page-content"] button[class$="-button"][aria-label="Dashboard settings page delete dashboard button"]':
-            {
-              background: astro.color.status.critical,
-              color: astro.color.text.white,
-              ':hover': {
-                background: astro.palette.red[400],
-              },
-            },
           //upper right buttons
           'button[data-testid="data-testid dashboard-settings-close"]': {
             //secondary styling
@@ -720,7 +818,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             'nav .scrollbar-view ': {
               'div[role="tablist"]': {
                 background: astro.color.background.surface.default,
-
+                'a:hover': {
+                  background: astro.color.background.base.hover,
+                },
                 'a[class$="-activeTabStyle"]': {
                   backgroundColor: astro.color.background.surface.selected,
                 },
@@ -768,10 +868,24 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
           },
+          //* Headings
           h1: {
             color: astro.color.text.white,
             ...astro.typography.h1,
           },
+          h2: {
+            color: astro.color.text.white,
+            ...astro.typography.h2,
+          },
+          h3: {
+            color: astro.color.text.white,
+            ...astro.typography.h3,
+          },
+          h6: {
+            color: astro.color.text.white,
+            ...astro.typography.h6,
+          },
+          //* Checkboxes
           'input[type="checkbox"] + span': {
             background: astro.color.background.base.default,
             border: `1px solid ${astro.color.border.interactive.default}`,
@@ -797,6 +911,305 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             background: astro.color.background.base.default,
             opacity: 0.4,
             cursor: 'not-allowed',
+          },
+          //End Checkboxes
+          //* Switch
+          'input[type="checkbox"] + label[aria-label="Toggle switch"], input[type="checkbox"] + label[aria-label="Toggle view"]':
+            {
+              background: astro.color.background.base.default,
+              border: `1px solid ${astro.color.border.interactive.muted}`,
+              ':hover': {
+                '::after': {
+                  borderColor: astro.color.border.interactive.hover,
+                },
+              },
+              '::after': {
+                background: astro.color.background.base.default,
+                border: `1px solid ${astro.color.border.interactive.default}`,
+              },
+            },
+          'input[type="checkbox"]:checked + label[aria-label="Toggle switch"], input[type="checkbox"]:checked + label[aria-label="Table view"]':
+            {
+              background: astro.color.background.interactive.default,
+            },
+          'input[type="checkbox"]#table-view + label': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            ':hover': {
+              '::after': {
+                borderColor: astro.color.border.interactive.hover,
+              },
+            },
+            '::after': {
+              background: astro.color.background.base.default,
+              border: `1px solid ${astro.color.border.interactive.default}`,
+            },
+          },
+          'input[type="checkbox"]:checked#table-view + label': {
+            background: astro.color.background.interactive.default,
+          },
+          //End Switch
+          //* Seg button
+          //! ugly border on the parent of this below selector. Can't get to it without :has
+          'div:has(> input[type="radio"])': {
+            border: '3px solid transparent',
+            background: 'tranparent',
+            padding: 0,
+          },
+          'input[type="radio"], input[type="radio"][id*="radiogroup"]': {
+            ':checked': {
+              '+ label': {
+                background: astro.color.background.surface.selected,
+                color: `${astro.color.text.white} !important`,
+              },
+            },
+            '+ label': {
+              background: astro.color.background.base.default,
+              color: astro.color.text.interactive.default,
+              border: `1px solid ${astro.color.border.interactive.default}`,
+              ':hover': {
+                color: astro.color.text.interactive.hover,
+                border: `1px solid ${astro.color.border.interactive.hover}`,
+              },
+              ':not(:last-child)': {
+                borderRight: 'none',
+              },
+            },
+          },
+          //end Seg btn
+          //* label divs
+          'div[class$="-Label"]': {
+            color: astro.color.text.white,
+          },
+          //* Option Groups - headers of panel options in edit panel view
+          '.options-group > div:first-child': {
+            background: astro.color.background.base.header,
+            color: astro.color.text.white,
+          },
+          //* Textareas
+          'textarea, textarea[class^="css-"]': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.muted}`,
+            ':hover': {
+              outline: 'none',
+              borderColor: astro.color.border.interactive.hover,
+            },
+          },
+          //end Textarea
+          //* Timepicker drop down
+          'div#TimePickerContent': {
+            background: astro.color.background.surface.default,
+            //remove double border from inputs
+            'div[class*="-input-wrapper"]': {
+              border: 'none',
+            },
+            //suffix buttons on inputs
+            'div[class$="input-addon"]': {
+              'button[class$="-button"]': {
+                border: 'none',
+              },
+            },
+            //time ranges on right side
+            'ul[aria-roledescription="Time range selection"]': {
+              'li input:checked + label': {
+                color: astro.color.text.white,
+              },
+            },
+            'button[class$="-button"]': {
+              backgroundColor: astro.color.background.interactive.default,
+              borderRadius: astro.radius.base,
+              color: astro.color.text.inverse,
+              ':disabled': {
+                opacity: '0.4',
+                cursor: 'not-allowed',
+                ':hover': {
+                  background: astro.color.background.interactive.default,
+                },
+              },
+              ':hover': {
+                borderColor: 'transparent',
+                backgroundColor: astro.color.background.interactive.hover,
+                color: astro.color.text.inverse,
+              },
+              svg: {
+                fill: 'black',
+              },
+            },
+            'section[aria-label="Time zone selection"]': {
+              background: astro.color.background.base.default,
+            },
+            //* React Calendar
+            'section[aria-label="Time Range calendar"]': {
+              //first div is the header
+              '> div': {
+                background: astro.color.background.base.header,
+                color: astro.color.text.white,
+              },
+              '.react-calendar': {
+                background: astro.color.background.surface.default,
+                border: `1px solid ${astro.color.border.interactive.muted}`,
+                //navigation buttons, ie arrows and month label
+                'react-calendar__navigation__label': {
+                  color: astro.color.text.white,
+                },
+                '.react-calendar__navigation__arrow': {
+                  background: 'transparent',
+                  color: astro.color.text.interactive,
+                  svg: {
+                    fill: astro.color.background.interactive.default,
+                  },
+                  ':hover': {
+                    svg: {
+                      fill: astro.color.background.interactive.hover,
+                    },
+                  },
+                },
+                //day of week labels
+                '.react-calendar__month-view__weekdays__weekday': {
+                  color: astro.color.text.white,
+                },
+                //day numbers
+                '.react-calendar__tile.react-calendar__month-view__days__day': {
+                  color: astro.color.text.interactive.default,
+                  ':hover': {
+                    color: astro.color.text.interactive.hover,
+                  },
+                },
+                //active day
+                '.react-calendar__tile.react-calendar__tile--hasActive, .react-calendar__tile.react-calendar__tile--now, .react-calendar__tile.react-calendar__tile--active ':
+                  {
+                    color: astro.color.text.white,
+                  },
+                '.react-calendar__tile--hasActive:not(.react-calendar__tile--range)': {
+                  background: astro.color.background.interactive.default,
+                },
+              },
+            },
+            //end react calendar
+          },
+          //end timepicker dropdown
+          //* Annotation dialog
+          //This uses Popper.js, and the only attribute we can target is the data-popper* attrs.
+          'div[data-popper-placement="top"], div[data-popper-placement="bottom"], div[data-popper-placement="left"], div[data-popper-placement="right"]':
+            {
+              background: astro.color.background.surface.default,
+              //first child div should be header
+              ':first-child': {
+                background: astro.color.background.surface.header,
+              },
+              //dialog buttons - secondary for all but last button
+              '[class$="-horizontal-group"] [class$="-layoutChildrenWrapper"]:not(:last-child) button': {
+                backgroundColor: 'transparent',
+                border: `1px solid ${astro.color.border.interactive.default}`,
+                color: astro.color.text.interactive.default,
+                ':hover': {
+                  color: astro.color.text.interactive.hover,
+                  border: `1px solid ${astro.color.border.interactive.hover}`,
+                },
+              },
+              '[class$="-horizontal-group"] [class$="-layoutChildrenWrapper"]:last-child button': {
+                backgroundColor: astro.color.background.interactive.default,
+                borderRadius: astro.radius.base,
+                color: astro.color.text.inverse,
+                ':hover': {
+                  borderColor: 'transparent',
+                  backgroundColor: astro.color.background.interactive.hover,
+                  color: astro.color.text.inverse,
+                },
+              },
+            },
+          //* Panel options -> inspect slide out pane
+          'div[aria-label="Drawer title Inspect: Panel Title"]': {
+            '> div:first-child': {
+              background: astro.color.background.base.header,
+            },
+            'div[class$="-Header"]': {
+              background: astro.color.background.surface.header,
+              'button[aria-label="toggle collapse and expand query row"] + div > div:first-child': {
+                color: astro.color.text.white,
+              },
+            },
+            'button[class$="-button"][type="button"]': {
+              backgroundColor: astro.color.background.interactive.default,
+              borderRadius: astro.radius.base,
+              color: astro.color.text.inverse,
+              ':disabled': {
+                opacity: '0.4',
+                cursor: 'not-allowed',
+                ':hover': {
+                  background: astro.color.background.interactive.default,
+                },
+              },
+              ':hover': {
+                borderColor: 'transparent',
+                backgroundColor: astro.color.background.interactive.hover,
+                color: astro.color.text.inverse,
+              },
+              svg: {
+                fill: 'black',
+              },
+            },
+          },
+          //end panel options slide out
+          //* get help slide out panel
+          'div[aria-label="Drawer title Get help with this panel"]': {
+            '> div:first-child': {
+              background: astro.color.background.base.header,
+            },
+            'button[class$="-button"][type="button"]': {
+              backgroundColor: astro.color.background.interactive.default,
+              borderRadius: astro.radius.base,
+              color: astro.color.text.inverse,
+              ':disabled': {
+                opacity: '0.4',
+                cursor: 'not-allowed',
+                ':hover': {
+                  background: astro.color.background.interactive.default,
+                },
+              },
+              ':hover': {
+                borderColor: 'transparent',
+                backgroundColor: astro.color.background.interactive.hover,
+                color: astro.color.text.inverse,
+              },
+              svg: {
+                fill: 'black',
+              },
+            },
+            'input[type="checkbox"] + label': {
+              background: astro.color.background.base.default,
+              border: `1px solid ${astro.color.border.interactive.muted}`,
+              ':hover': {
+                '::after': {
+                  borderColor: astro.color.border.interactive.hover,
+                },
+              },
+              '::after': {
+                background: astro.color.background.base.default,
+                border: `1px solid ${astro.color.border.interactive.default}`,
+              },
+            },
+            'input[type="checkbox"]:checked + label': {
+              background: astro.color.background.interactive.default,
+            },
+            'div:has(> .inline-switch-label)': {
+              background: astro.color.background.surface.default,
+              border: 'none',
+              color: astro.color.text.white,
+              ':hover': {
+                border: 'none',
+                color: astro.color.text.white,
+                '.inline-switch-label': {
+                  color: astro.color.text.white,
+                },
+              },
+            },
+            '.inline-switch-label': {
+              color: astro.color.text.white,
+              ':hover': {
+                color: astro.color.text.white,
+              },
+            },
           },
         }}
       />

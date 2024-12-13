@@ -16,4 +16,5 @@ export interface AstroOptions {
   classification: Classification;
   clock: boolean;
   format: Format;
+  hidePanel: boolean;
 }
