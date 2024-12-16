@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { Mode, useAstroTokens } from 'use-astro-tokens';
+import React, { useEffect, useState } from 'react';
+
 import { DefaultTheme } from 'types';
 import { Global } from '@emotion/react';
-import { useAstroTokens, Mode } from 'use-astro-tokens';
 import { getDayOfYear } from 'date-fns';
 
 interface Props {
@@ -46,7 +47,7 @@ export const Clock: React.FC<Props> = (props) => {
         <div className="date-label">Date</div>
       </div>
       <div className="time-container">
-        <div className="time">{clockTime} UTC</div>
+        <div className="time">{clockTime}UTC</div>
         <div className="time-label">Time</div>
       </div>
       <Global
@@ -59,7 +60,7 @@ export const Clock: React.FC<Props> = (props) => {
             alignItems: 'center',
             width: 'fit-content',
             margin: astro.spacing(2),
-            fontFamily: astro.typography.monospace.fontFamily,
+            ...astro.typography.monospace,
             '.date-container': {
               display: 'flex',
               flexDirection: 'column',
@@ -116,6 +117,8 @@ export const Clock: React.FC<Props> = (props) => {
                 height: astro.spacing(10),
                 padding: astro.spacing(0, 3),
                 border: `1px solid ${astro.color.background.surface.default}`,
+                ...astro.typography.monospace,
+                fontVariantNumeric: 'tabular-nums',
               },
             },
           },
