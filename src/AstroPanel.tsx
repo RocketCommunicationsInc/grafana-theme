@@ -774,6 +774,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               fill: 'black',
             },
           },
+          //add permissions
+          'div[aria-label="Permissions slider"]': {
+            background: astro.color.background.surface.header,
+            borderColor: astro.color.status.normal,
+          },
           //upper right buttons
           'button[data-testid="data-testid dashboard-settings-close"]': {
             //secondary styling
@@ -1242,6 +1247,51 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               //failure styling?
               '> div:first-child': {
                 background: astro.color.status.critical,
+              },
+            },
+          },
+          //* Dashboard submenu
+          //queries
+          'label.gf-form-label--variable': {
+            background: astro.color.background.surface.default,
+            // border: `1px solid ${astro.color.border.interactive.default},`,
+          },
+          '.variable-link-wrapper': {
+            background: astro.color.background.surface.default,
+            border: `1px solid ${astro.color.border.interactive.default},`,
+            borderRadius: astro.radius.base,
+            button: {
+              background: astro.color.background.surface.default,
+              border: 'none',
+            },
+            ':hover': {
+              border: `1px solid ${astro.color.border.interactive.hover},`,
+              svg: {
+                fill: astro.color.background.interactive.hover,
+              },
+            },
+          },
+          //inputs with dropdown - might just be those in submenu, i'm unsure
+          'input[aria-expanded="true"]': {
+            '+ div': {
+              background: astro.color.background.base.default,
+              border: `1px solid ${astro.color.border.interactive.muted}`,
+              color: astro.color.text.interactive.default,
+            },
+          },
+          //annotations in submenu
+          'div[class$="-InlineFieldRow"]': {
+            color: astro.color.text.primary,
+            display: 'revert',
+            'label, div': {
+              color: astro.color.text.primary,
+              background: astro.color.background.surface.default,
+            },
+            'div div div': {
+              color: astro.color.text.primary,
+              border: 'none',
+              ':hover': {
+                border: 'none',
               },
             },
           },
