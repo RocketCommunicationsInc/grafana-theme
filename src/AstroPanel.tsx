@@ -165,10 +165,10 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //nav breadcrumb
           'nav[aria-label="Breadcrumbs"]': {
             'div[class$="-Icon"] svg': {
-              fill: astro.color.text.white,
+              fill: astro.color.text.primary,
               opacity: 0.4,
               ':hover': {
-                fill: astro.color.text.white,
+                fill: astro.color.text.primary,
                 opacity: 0.4,
               },
             },
@@ -181,7 +181,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
             span: {
-              color: astro.color.text.white,
+              color: astro.color.text.primary,
             },
           },
           //add panel button
@@ -668,7 +668,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
             'a[class$="-activeTabStyle"]': {
-              color: astro.color.text.white,
+              color: astro.color.text.primary,
               ':before': {
                 backgroundImage: `linear-gradient(270deg, ${astro.color.background.interactive.default} 0%, ${astro.color.background.interactive.default} 100%)`,
               },
@@ -744,9 +744,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             {
               background: astro.color.status.critical,
               border: `1px solid ${astro.palette.red[700]}`,
-              color: astro.color.text.white,
+              color: astro.color.text.primary,
               ':hover': {
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
                 background: astro.palette.red[400],
                 border: `1px solid ${astro.color.status.critical}`,
               },
@@ -870,19 +870,19 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           //* Headings
           h1: {
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
             ...astro.typography.h1,
           },
           h2: {
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
             ...astro.typography.h2,
           },
           h3: {
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
             ...astro.typography.h3,
           },
           h6: {
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
             ...astro.typography.h6,
           },
           //* Checkboxes
@@ -960,7 +960,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             ':checked': {
               '+ label': {
                 background: astro.color.background.surface.selected,
-                color: `${astro.color.text.white} !important`,
+                color: `${astro.color.text.primary} !important`,
               },
             },
             '+ label': {
@@ -979,12 +979,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //end Seg btn
           //* label divs
           'div[class$="-Label"]': {
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
           },
           //* Option Groups - headers of panel options in edit panel view
           '.options-group > div:first-child': {
             background: astro.color.background.base.header,
-            color: astro.color.text.white,
+            color: astro.color.text.primary,
           },
           //* Textareas
           'textarea, textarea[class^="css-"]': {
@@ -1012,7 +1012,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             //time ranges on right side
             'ul[aria-roledescription="Time range selection"]': {
               'li input:checked + label': {
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
               },
             },
             'button[class$="-button"]': {
@@ -1043,14 +1043,14 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               //first div is the header
               '> div': {
                 background: astro.color.background.base.header,
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
               },
               '.react-calendar': {
                 background: astro.color.background.surface.default,
                 border: `1px solid ${astro.color.border.interactive.muted}`,
                 //navigation buttons, ie arrows and month label
                 'react-calendar__navigation__label': {
-                  color: astro.color.text.white,
+                  color: astro.color.text.primary,
                 },
                 '.react-calendar__navigation__arrow': {
                   background: 'transparent',
@@ -1094,7 +1094,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             {
               background: astro.color.background.surface.default,
               //first child div should be header
-              ':first-child': {
+              '> div:first-child': {
                 background: astro.color.background.surface.header,
               },
               //dialog buttons - secondary for all but last button
@@ -1116,6 +1116,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                   backgroundColor: astro.color.background.interactive.hover,
                   color: astro.color.text.inverse,
                 },
+                svg: {
+                  fill: 'black',
+                },
               },
             },
           //* Panel options -> inspect slide out pane
@@ -1126,7 +1129,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             'div[class$="-Header"]': {
               background: astro.color.background.surface.header,
               'button[aria-label="toggle collapse and expand query row"] + div > div:first-child': {
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
               },
             },
             'button[class$="-button"][type="button"]': {
@@ -1195,19 +1198,48 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             'div:has(> .inline-switch-label)': {
               background: astro.color.background.surface.default,
               border: 'none',
-              color: astro.color.text.white,
+              color: astro.color.text.primary,
               ':hover': {
                 border: 'none',
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
                 '.inline-switch-label': {
-                  color: astro.color.text.white,
+                  color: astro.color.text.primary,
                 },
               },
             },
             '.inline-switch-label': {
-              color: astro.color.text.white,
+              color: astro.color.text.primary,
               ':hover': {
-                color: astro.color.text.white,
+                color: astro.color.text.primary,
+              },
+            },
+          },
+          //* Notifications/Alerts/Toast
+          'div[role="status"]': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.status.standby}`,
+            borderLeftWidth: astro.spacing(3),
+            '& > div:nth-child(2)': {
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+            },
+            '& > div:nth-child(3)': {
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+            },
+            '&[data-testid*="Alert success"]': {
+              //success styling
+              borderColor: astro.color.status.normal,
+              '> div:first-child': {
+                background: astro.color.background.base.default,
+              },
+            },
+            '&[data-testid*="Alert fail"]': {
+              //failure styling?
+              '> div:first-child': {
+                background: astro.color.status.critical,
               },
             },
           },

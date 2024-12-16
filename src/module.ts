@@ -30,7 +30,7 @@ export const plugin = new PanelPlugin<AstroOptions>(AstroPanel).setPanelOptions(
     path: 'hidePanel',
     defaultValue: false,
     description:
-      'Hides the Astro panel entirely, allowing for extra dashboard space but retaining the styling the panel provides.',
+      'Hides the Astro panel entirely, allowing for extra dashboard space but retaining the styling the panel provides. If enabled, you may need to edit the JSON model to see the panel again.',
   });
   builder.addSelect({
     path: 'classification',
