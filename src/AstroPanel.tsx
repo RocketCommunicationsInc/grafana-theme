@@ -739,7 +739,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
           },
           //* Settings Page
-          //most all other buttons that can't be targeted nicely
+          //Style delete dashboard button
           'div[class$="-page-content"] button[class$="-button"][aria-label="Dashboard settings page delete dashboard button"]':
             {
               background: astro.color.status.critical,
@@ -751,11 +751,13 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                 border: `1px solid ${astro.color.status.critical}`,
               },
             },
+          //most all other buttons that can't be targeted nicely
           'div[class$="-page-content"] button[class$="-button"]': {
             //reg styling
             backgroundColor: astro.color.background.interactive.default,
             borderRadius: astro.radius.base,
             color: astro.color.text.inverse,
+            border: 'none',
             ':disabled': {
               opacity: '0.4',
               cursor: 'not-allowed',
