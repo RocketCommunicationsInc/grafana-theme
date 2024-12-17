@@ -1,0 +1,39 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "rocketcom",
+  "signedByOrgName": "rocketcom",
+  "plugin": "rocketcom-astrotheme-panel",
+  "version": "1.1.0",
+  "time": 1734470129374,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "LICENSE": "d5e0b23ebdc36f0881542e2bf3378d016824d7bc576712950242269142b9cac9",
+    "CHANGELOG.md": "aebae5f9e90d5c248e02242042fd4e0b4fa0f5e0fad2504078bc671d3b73e4e0",
+    "module.js.LICENSE.txt": "3a67ad8c112aaaebd0973de4a9f61b6f67b234cce3e9284b27154193ec849d96",
+    "module.js.map": "c76f2517450bc243569c6ccddb1c29aacbb9d2a177447b8a9061d901a47fabad",
+    "plugin.json": "b8074284968eadcb9a9f96b2fb582b235a20a05429aeef7db35ab445f1c13e9d",
+    "README.md": "14e3ecd4dc050aaffba18ed4efc634fe64f713a931c1782f96d00d30da9b6e2a",
+    "img/astro-logo.svg": "6b4a44c0e9a816a79fb1849892f20a7cc4b4ea7c470ad14b690e5f8a14e2982c",
+    "img/screenshots/NewPanelMenu.png": "92b956c5c66bb76b3ebff8de3aa3c7e0a7b4817882b635988621331ef8974976",
+    "img/screenshots/PanelNextToNav.png": "a57db47d9262163b6afbfdb9d697db48659e1d035849d843436a54bf1cb52129",
+    "img/screenshots/full-light-theme.png": "8b666be3c079077d998af189b16f5fc99f051f42224b8397196840b134324b77",
+    "img/screenshots/full.png": "06d5677860f95ac26e3645a437381f7dcc3916d3d4bde05007e814c04b87851e",
+    "module.js": "1e88c13090e5d24fa5a805b3affd5f6132c568eb61432598daffcb79be14ca37"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.11
+Comment: https://openpgpjs.org
+
+wrkEARMKAAYFAmdh6fEAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm5/4CAgkAVpMk1kJiaCGNia1vK4hhaJpWQHtdpsoqP7mkAQpHAerF+YN7
+t8KYmRFmhbr915oje1Mq+RqJwlaqPqVZzehY14ICCQGNBIobIdcVfu1LFLsh
+kmHkrYs1uU4szTM1NIZthYsUXyEF6yP0gmtkT/+3Ah3lGX1KEUuSZbAPxZoI
+R6PMYxTmyw==
+=prny
+-----END PGP SIGNATURE-----
