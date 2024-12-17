@@ -1,3 +1,5 @@
 //! Targets an auto-generated Emotion class. This classname may change in future builds.
 
 //! This is the bar next to the selected icon in the nav. The important override here is the backgroundImage: none;
+
+//! ugly border on the parent of this below selector. Can't get to it without :has
