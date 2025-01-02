@@ -402,7 +402,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           },
           //* Astro Panel CSS
           //Attempts at hiding Astro panel entriely but keeping the theme alive
-          'div[class$="-panel-container"]:has(.hide-astro-panel)': {
+          '[class$="-panel-container"]:has(.hide-astro-panel)': {
             display: 'none',
           },
           //theme switch button
@@ -955,6 +955,19 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           'input[type="checkbox"]:checked#table-view + label': {
             background: astro.color.background.interactive.default,
           },
+          'div:has(> label.inline-switch-label)': {
+            background: astro.color.background.surface.default,
+            border: `1px solid ${astro.color.border.interactive.default}`,
+            ':hover': {
+              border: `1px solid ${astro.color.border.interactive.hover}`,
+            },
+            'label.inline-switch-label': {
+              color: astro.color.text.primary,
+              ':hover': {
+                color: astro.color.text.primary,
+              },
+            },
+          },
           //End Switch
           //* Seg button
           //! ugly border on the parent of this below selector. Can't get to it without :has
@@ -1256,12 +1269,23 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             background: astro.color.background.surface.default,
             // border: `1px solid ${astro.color.border.interactive.default},`,
           },
-          '.variable-link-wrapper': {
-            background: astro.color.background.surface.default,
+          //dashboard quick links
+          'a.gf-form-label--dashlink': {
+            background: astro.color.background.base.default,
             border: `1px solid ${astro.color.border.interactive.default},`,
             borderRadius: astro.radius.base,
+            color: astro.color.text.primary,
+            ':hover': {
+              border: `1px solid ${astro.color.border.interactive.hover},`,
+            },
+          },
+          '.variable-link-wrapper': {
+            background: astro.color.background.base.default,
+            border: `1px solid ${astro.color.border.interactive.default},`,
+            borderRadius: astro.radius.base,
+            color: astro.color.text.primary,
             button: {
-              background: astro.color.background.surface.default,
+              background: astro.color.background.base.default,
               border: 'none',
             },
             ':hover': {
