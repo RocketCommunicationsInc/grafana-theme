@@ -1,0 +1,40 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "rocketcom",
+  "signedByOrgName": "rocketcom",
+  "plugin": "rocketcom-astrotheme-panel",
+  "version": "1.1.0",
+  "time": 1735873174438,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "index.html": "d238e030aa78e5257b902ad7bb0efa7d875ccd284da5143f4ae85f0796d93296",
+    "LICENSE": "d5e0b23ebdc36f0881542e2bf3378d016824d7bc576712950242269142b9cac9",
+    "CHANGELOG.md": "aebae5f9e90d5c248e02242042fd4e0b4fa0f5e0fad2504078bc671d3b73e4e0",
+    "module.js.LICENSE.txt": "3a67ad8c112aaaebd0973de4a9f61b6f67b234cce3e9284b27154193ec849d96",
+    "module.js.map": "ae52d9bc89fb94076793f6c297839512ab6783d8383da8b9dc8cf4e153d916d5",
+    "plugin.json": "b8074284968eadcb9a9f96b2fb582b235a20a05429aeef7db35ab445f1c13e9d",
+    "README.md": "14e3ecd4dc050aaffba18ed4efc634fe64f713a931c1782f96d00d30da9b6e2a",
+    "img/astro-logo.svg": "6b4a44c0e9a816a79fb1849892f20a7cc4b4ea7c470ad14b690e5f8a14e2982c",
+    "img/screenshots/NewPanelMenu.png": "92b956c5c66bb76b3ebff8de3aa3c7e0a7b4817882b635988621331ef8974976",
+    "img/screenshots/PanelNextToNav.png": "a57db47d9262163b6afbfdb9d697db48659e1d035849d843436a54bf1cb52129",
+    "img/screenshots/full-light-theme.png": "8b666be3c079077d998af189b16f5fc99f051f42224b8397196840b134324b77",
+    "img/screenshots/full.png": "06d5677860f95ac26e3645a437381f7dcc3916d3d4bde05007e814c04b87851e",
+    "module.js": "2d95ff1ae3f695c2d469fc21fe41f8e320a2b12b05dd89d7271d7d99fd7faa45"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.11
+Comment: https://openpgpjs.org
+
+wrkEARMKAAYFAmd3UpYAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm514qAgkA/lsXZM6zGx+ag7748bbeQ8L5qE7s5sti9S9Ol0+OxAjDr+Cd
+5Os/dwK6jZyeT+WOQxJiJA7h+AzTb19mQ6t4QqICCQGmg8iC9qfAQgLrlIhF
+oFFKbu2oyBGwy8Vait0QS+uKtLE1YUOqCp7JQCH1RHzjNpMuyWJDJASZ6wg0
+KLPJnomE3A==
+=NQ9l
+-----END PGP SIGNATURE-----
