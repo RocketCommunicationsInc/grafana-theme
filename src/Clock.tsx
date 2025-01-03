@@ -1,5 +1,5 @@
 import { Mode, useAstroTokens } from 'use-astro-tokens';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { DefaultTheme } from 'types';
 import { Global } from '@emotion/react';
@@ -9,6 +9,9 @@ interface Props {
   defaultTheme: DefaultTheme;
 }
 
+function padNumTo3Digits(num: number) {
+  return num.toString().padStart(3, '0');
+}
 export const Clock: React.FC<Props> = (props) => {
   const [mode] = useState<Mode>(props.defaultTheme);
   const astro = useAstroTokens({ mode });
@@ -20,7 +23,7 @@ export const Clock: React.FC<Props> = (props) => {
 
   const [clockTime, setClockTime] = useState(time.toUTCString().slice(17, -3));
 
-  function updateTime() {
+  const updateTime = useCallback(() => {
     // convert time to UTC
     let rawClockTime = new Date(Date.now());
     let rawClockTimeUTC = rawClockTime.toUTCString();
@@ -31,18 +34,15 @@ export const Clock: React.FC<Props> = (props) => {
     setClockTime(formattedClocktime);
     setTime(new Date(Date.now()));
     setDayOfYear(jDayUTC);
-  }
-
-  function padNumTo3Digits(num: number) {
-    return num.toString().padStart(3, '0');
-  }
+  }, []);
 
   useEffect(() => {
+    console.log('running useEffect');
     const timerId = setInterval(updateTime, 1000);
     return function cleanup() {
       clearInterval(timerId);
     };
-  }, []);
+  }, [updateTime]);
 
   return (
     <div className="rux-clock">
