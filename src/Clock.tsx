@@ -14,8 +14,8 @@ export const Clock: React.FC<Props> = (props) => {
   const astro = useAstroTokens({ mode });
 
   const [time, setTime] = useState<Date>(new Date(Date.now()));
-  const [dayOfYear, setDayOfYear] = useState(
-    getDayOfYear(new Date(time.getUTCFullYear(), time.getUTCMonth(), time.getUTCDate()))
+  const [dayOfYear, setDayOfYear] = useState<string | number>(
+    padNumTo3Digits(getDayOfYear(new Date(time.getUTCFullYear(), time.getUTCMonth(), time.getUTCDate())))
   );
 
   const [clockTime, setClockTime] = useState(time.toUTCString().slice(17, -3));
@@ -24,13 +24,17 @@ export const Clock: React.FC<Props> = (props) => {
     // convert time to UTC
     let rawClockTime = new Date(Date.now());
     let rawClockTimeUTC = rawClockTime.toUTCString();
-    let jDayUTC = getDayOfYear(
-      new Date(rawClockTime.getUTCFullYear(), rawClockTime.getUTCMonth(), rawClockTime.getUTCDate())
+    let jDayUTC = padNumTo3Digits(
+      getDayOfYear(new Date(rawClockTime.getUTCFullYear(), rawClockTime.getUTCMonth(), rawClockTime.getUTCDate()))
     );
     let formattedClocktime = rawClockTimeUTC.slice(17, -3);
     setClockTime(formattedClocktime);
     setTime(new Date(Date.now()));
     setDayOfYear(jDayUTC);
+  }
+
+  function padNumTo3Digits(num: number) {
+    return num.toString().padStart(3, '0');
   }
 
   useEffect(() => {
