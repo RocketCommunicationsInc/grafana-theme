@@ -37,7 +37,6 @@ export const Clock: React.FC<Props> = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log('running useEffect');
     const timerId = setInterval(updateTime, 1000);
     return function cleanup() {
       clearInterval(timerId);
