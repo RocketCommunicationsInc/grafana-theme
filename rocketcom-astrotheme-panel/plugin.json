@@ -43,8 +43,8 @@
         "path": "img/screenshots/PanelNextToNav.png"
       }
     ],
-    "version": "1.1.0",
-    "updated": "2024-12-15"
+    "version": "1.1.1",
+    "updated": "2025-03-24"
   },
   "dependencies": {
     "grafanaDependency": ">=9.1.6",
