@@ -764,18 +764,12 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             'div[aria-label="Panel editor data pane content"] > div:first-child > div:nth-child(2)': {
               backgroundColor: astro.color.background.surface.default,
             },
-            // '*': {
-            //   backgroundColor: 'inherit',
-            // },
           },
           //save dashboard slide out dialog
           'div[aria-label="Drawer title Save dashboard"]': {
             '> div:first-child': {
               backgroundColor: astro.color.background.surface.header,
             },
-            // '> div > div:nth-child(2)': {
-            //   backgroundColor: astro.color.background.surface.header,
-            // },
             'button[type="button"][class$="-button"]': {
               //secondary styling
               backgroundColor: 'transparent',
@@ -1335,7 +1329,6 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //queries
           'label.gf-form-label--variable': {
             background: astro.color.background.surface.default,
-            // border: `1px solid ${astro.color.border.interactive.default},`,
           },
           //dashboard quick links
           'a.gf-form-label--dashlink': {
@@ -1376,7 +1369,6 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             color: astro.color.text.primary,
             'label, div': {
               color: astro.color.text.primary,
-              // background: astro.color.background.surface.default,
             },
             'div div div': {
               color: astro.color.text.primary,
