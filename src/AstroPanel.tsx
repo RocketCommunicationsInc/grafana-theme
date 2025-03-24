@@ -184,6 +184,11 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               color: astro.color.text.primary,
             },
           },
+          'nav a[data-testid="data-testid Nav menu item"]': {
+            ':hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
           //add panel button
           'button[class$="-button-add-panel-button-add-panel-button-text"]': {
             border: `1px solid ${astro.color.border.interactive.default}`,
@@ -334,7 +339,7 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           body: {
             background: astro.color.background.base.default,
           },
-          'input[class$="-input-input"]': {
+          'input[class$="-input-input"], ': {
             // boxShadow: `${astro.color.border.interactive.muted} 0 0 0 1px inset`,
             border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
@@ -356,11 +361,31 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
           },
-          // '.tooltip-arrow::before': {
-          //   background: astro.color.background.surface.default,
-          // },
+          //sliders
+          '.rc-slider.rc-slider-horizontal': {
+            '.rc-slider-track': {
+              backgroundColor: astro.color.background.interactive.default,
+            },
+            '.rc-slider-handle': {
+              border: `2px solid ${astro.color.border.interactive.default}`,
+              backgroundColor: astro.color.background.base.default,
+              ':hover': {
+                borderColor: astro.color.border.interactive.hover,
+              },
+            },
+            '.rc-slider-handle:active': {
+              borderColor: astro.color.border.interactive.hover,
+            },
+            // '.rc-slider-handle:focus': {
+            //   boxShadow: `0 0 0 5px ${astro.color.border.interactive.hover}`,
+            // },
+            '.rc-slider-handle-dragging.rc-slider-handle-dragging': {
+              borderColor: astro.color.border.interactive.hover,
+              boxShadow: `0 0 0 1px ${astro.color.border.interactive.hover}`,
+            },
+          },
           //annotation menu
-          'div[class*="-input-wrapper"]': {
+          'div[class*="-input-wrapper"], .slate-query-field': {
             border: `1px solid ${astro.color.border.interactive.muted}`,
             borderRadius: astro.radius.base,
             ...astro.typography.body1,
@@ -373,30 +398,35 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
           },
           //tables
-          'div[role=row]': {
+          'div[role="row"][class$="-thead"]': {
+            boxShadow: `rgba(0, 0, 0, 0.45) 0px 0.25rem 0.5rem`,
+          },
+          'div[role="row"]': {
             color: astro.color.text.primary,
             borderColor: astro.color.background.base.default,
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
-          'div[role=row] > div[role=cell]': {
+          'div[role="row"] > div[role="cell"]': {
             borderTop: `1px solid ${astro.color.background.base.default}`,
           },
-          'div[role=cell]': {
-            color: astro.color.text.primary,
+          'div[role="cell"]': {
             borderColor: astro.color.background.base.default,
             borderBottomWidth: '1px',
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
-          'div[role=columnheader]': {
-            borderColor: astro.color.background.base.default,
+          'div[role="columnheader"]': {
+            border: 'none',
+            // borderColor: astro.color.background.base.default,
             background: astro.color.background.surface.default,
-            borderBottom: `1px solid ${astro.color.border.interactive.muted}`,
+            // borderBottom: `1px solid ${astro.color.border.interactive.muted}`,
             button: {
-              ...astro.typography.h4,
+              fontWeight: '400',
+              fontSize: '18px',
+              lineHeight: '24px',
               color: astro.color.text.primary,
             },
           },
@@ -700,14 +730,46 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
               },
             },
           },
+          //transform data
+          'div[class$="-layoutChildrenWrapper"] div[aria-label^="New transform"]': {
+            backgroundColor: astro.color.background.base.default,
+            color: astro.color.text.primary,
+            ':hover': {
+              backgroundColor: astro.color.background.base.hover,
+            },
+          },
+          //Alert tab
+          '.Pane.horizontal.Pane2': {
+            'div[class$="-layoutChildrenWrapper"] div[aria-label^="New transform"]': {
+              backgroundColor: astro.color.background.base.default,
+              color: astro.color.text.primary,
+              ':hover': {
+                backgroundColor: astro.color.background.base.hover,
+              },
+            },
+            backgroundColor: astro.color.background.surface.default,
+            'div[aria-label="Unified alert editor tab content"]': {
+              backgroundColor: astro.color.background.base.default,
+            },
+            'a[class$="-button"]': {
+              background: astro.color.background.interactive.default,
+              color: astro.color.text.inverse,
+              ':hover': {
+                background: astro.color.background.interactive.hover,
+              },
+              'div[class$="-Icon"] svg': {
+                fill: astro.color.text.inverse,
+              },
+            },
+            'div[aria-label="Panel editor data pane content"] > div:first-child > div:nth-child(2)': {
+              backgroundColor: astro.color.background.surface.default,
+            },
+          },
           //save dashboard slide out dialog
           'div[aria-label="Drawer title Save dashboard"]': {
             '> div:first-child': {
               backgroundColor: astro.color.background.surface.header,
             },
-            // '> div > div:nth-child(2)': {
-            //   backgroundColor: astro.color.background.surface.header,
-            // },
             'button[type="button"][class$="-button"]': {
               //secondary styling
               backgroundColor: 'transparent',
@@ -1267,7 +1329,6 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //queries
           'label.gf-form-label--variable': {
             background: astro.color.background.surface.default,
-            // border: `1px solid ${astro.color.border.interactive.default},`,
           },
           //dashboard quick links
           'a.gf-form-label--dashlink': {
@@ -1306,10 +1367,8 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //annotations in submenu
           'div[class$="-InlineFieldRow"]': {
             color: astro.color.text.primary,
-            display: 'revert',
             'label, div': {
               color: astro.color.text.primary,
-              background: astro.color.background.surface.default,
             },
             'div div div': {
               color: astro.color.text.primary,
@@ -1318,6 +1377,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                 border: 'none',
               },
             },
+          },
+          'div[aria-label="Panel editor data pane content"] .scrollbar-view label': {
+            background: 'inherit',
           },
         }}
       />
