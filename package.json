@@ -1,6 +1,6 @@
 {
   "name": "rocket-communications-astro",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An Astro UXDS theme for Grafana dashboards.",
   "scripts": {
     "build": "grafana-toolkit plugin:build",
