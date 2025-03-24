@@ -373,30 +373,35 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
             },
           },
           //tables
-          'div[role=row]': {
+          'div[role="row"][class$="-thead"]': {
+            boxShadow: `rgba(0, 0, 0, 0.45) 0px 0.25rem 0.5rem`,
+          },
+          'div[role="row"]': {
             color: astro.color.text.primary,
             borderColor: astro.color.background.base.default,
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
-          'div[role=row] > div[role=cell]': {
+          'div[role="row"] > div[role="cell"]': {
             borderTop: `1px solid ${astro.color.background.base.default}`,
           },
-          'div[role=cell]': {
-            color: astro.color.text.primary,
+          'div[role="cell"]': {
             borderColor: astro.color.background.base.default,
             borderBottomWidth: '1px',
             ':hover': {
               background: astro.color.background.surface.hover,
             },
           },
-          'div[role=columnheader]': {
-            borderColor: astro.color.background.base.default,
+          'div[role="columnheader"]': {
+            border: 'none',
+            // borderColor: astro.color.background.base.default,
             background: astro.color.background.surface.default,
-            borderBottom: `1px solid ${astro.color.border.interactive.muted}`,
+            // borderBottom: `1px solid ${astro.color.border.interactive.muted}`,
             button: {
-              ...astro.typography.h4,
+              fontWeight: '400',
+              fontSize: '18px',
+              lineHeight: '24px',
               color: astro.color.text.primary,
             },
           },
@@ -1306,10 +1311,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
           //annotations in submenu
           'div[class$="-InlineFieldRow"]': {
             color: astro.color.text.primary,
-            display: 'revert',
             'label, div': {
               color: astro.color.text.primary,
-              background: astro.color.background.surface.default,
+              // background: astro.color.background.surface.default,
             },
             'div div div': {
               color: astro.color.text.primary,
@@ -1318,6 +1322,9 @@ export const AstroPanel: React.FC<Props> = ({ options }) => {
                 border: 'none',
               },
             },
+          },
+          'div[aria-label="Panel editor data pane content"] .scrollbar-view label': {
+            background: 'inherit',
           },
         }}
       />
