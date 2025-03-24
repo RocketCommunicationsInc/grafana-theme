@@ -8,15 +8,15 @@ Hash: SHA512
   "signedByOrg": "rocketcom",
   "signedByOrgName": "rocketcom",
   "plugin": "rocketcom-astrotheme-panel",
-  "version": "1.1.0",
-  "time": 1742847845954,
+  "version": "1.1.1",
+  "time": 1742851154790,
   "keyId": "7e4d0c6a708866e7",
   "files": {
     "LICENSE": "d5e0b23ebdc36f0881542e2bf3378d016824d7bc576712950242269142b9cac9",
     "CHANGELOG.md": "aebae5f9e90d5c248e02242042fd4e0b4fa0f5e0fad2504078bc671d3b73e4e0",
     "module.js.LICENSE.txt": "3a67ad8c112aaaebd0973de4a9f61b6f67b234cce3e9284b27154193ec849d96",
     "module.js.map": "d99027031a0be1a07ac9c96525ab15d8d9796406cc00193cc178216fe263fbf1",
-    "plugin.json": "b8074284968eadcb9a9f96b2fb582b235a20a05429aeef7db35ab445f1c13e9d",
+    "plugin.json": "e50ccca57afed53a3a18654fd0df6ed7171f8e26f7a5996a68ae0c366e1f4659",
     "README.md": "14e3ecd4dc050aaffba18ed4efc634fe64f713a931c1782f96d00d30da9b6e2a",
     "img/astro-logo.svg": "6b4a44c0e9a816a79fb1849892f20a7cc4b4ea7c470ad14b690e5f8a14e2982c",
     "img/screenshots/NewPanelMenu.png": "92b956c5c66bb76b3ebff8de3aa3c7e0a7b4817882b635988621331ef8974976",
@@ -30,10 +30,10 @@ Hash: SHA512
 Version: OpenPGP.js v4.10.11
 Comment: https://openpgpjs.org
 
-wrkEARMKAAYFAmfhv2YAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
-cIhm56OWAgkAB9GiOT4fzMet2ysNkJZpILdIlHDiDptqSQ0H4TH19XvjjjFU
-9zA6XUWVBEHTHXaEIBTX0Wdk6SY9kPJLTuRUDbMCCQHv6PObqk5SpaqNQjE7
-Y4P/j6klB/nfQ6FxkthFlw8PnKs5lPx+KdCKJDPNYW5ChSSmKEzQjckZyStM
-n0JeruK36g==
-=agQm
+wrkEARMKAAYFAmfhzFIAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm5+qsAgkBUnzh6ThfcNzdrMuz33jdwarbXp3XzJXTudBJ9MNo/3misY8w
+TbyzZ7EDP7eE74SVLL4KW53VrLeaNJaxYVvT3BcCCQCT+cx4bpr2/PBt52aY
+YbY9JTcuGglvKjlneyLht5W9Qa00HBc/lZfhWLUO9YLLLnZIZEukHnhEjV7k
+gGqmHIHpcg==
+=wQs9
 -----END PGP SIGNATURE-----
