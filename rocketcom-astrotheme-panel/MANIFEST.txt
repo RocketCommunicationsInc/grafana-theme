@@ -9,7 +9,7 @@ Hash: SHA512
   "signedByOrgName": "rocketcom",
   "plugin": "rocketcom-astrotheme-panel",
   "version": "1.1.0",
-  "time": 1742847087510,
+  "time": 1742847845954,
   "keyId": "7e4d0c6a708866e7",
   "files": {
     "LICENSE": "d5e0b23ebdc36f0881542e2bf3378d016824d7bc576712950242269142b9cac9",
@@ -30,10 +30,10 @@ Hash: SHA512
 Version: OpenPGP.js v4.10.11
 Comment: https://openpgpjs.org
 
-wrkEARMKAAYFAmfhvG8AIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
-cIhm5+UWAgkBQLVxL3bVE174Bw678LNWQsCCCY2XLO6hHLB1mzW0kIPOnwUQ
-7wprxf7D/IkhqvfTxcoXzs7JcfteVk0Gej18E6ICCQHfYkKN7J6U4nitGdS/
-q56O47Py48AZV6/D1Ptcre0O8Qzj3+Vh3FxXqSjfL8hpghVDmtGsYKHlLleJ
-4gUElMpiGg==
-=zd9E
+wrkEARMKAAYFAmfhv2YAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm56OWAgkAB9GiOT4fzMet2ysNkJZpILdIlHDiDptqSQ0H4TH19XvjjjFU
+9zA6XUWVBEHTHXaEIBTX0Wdk6SY9kPJLTuRUDbMCCQHv6PObqk5SpaqNQjE7
+Y4P/j6klB/nfQ6FxkthFlw8PnKs5lPx+KdCKJDPNYW5ChSSmKEzQjckZyStM
+n0JeruK36g==
+=agQm
 -----END PGP SIGNATURE-----
